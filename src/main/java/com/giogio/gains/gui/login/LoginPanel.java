@@ -9,6 +9,7 @@ import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.SwingConstants;
 
+import com.giogio.gains.gui.MainFrame;
 import com.giogio.gains.gui.custom.RoundedBorder;
 
 import java.awt.Color;
@@ -18,13 +19,16 @@ import java.awt.event.MouseMotionAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.SystemColor;
 import javax.swing.JPasswordField;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class LoginPanel extends LoginFather {
+	private SignInPanel signInPanel;
 	private JTextField loginUserField;
 	private JButton loginForgotButton;
 	private JButton loginSignInButton;
-	private int count;
 	private JPasswordField loginPasswordField;
+	private int count;
 
 	/**
 	 * Create the panel.
@@ -45,7 +49,7 @@ public class LoginPanel extends LoginFather {
 		JLabel loginLabel = new JLabel();
 		loginLabel.setText(ResourceBundle.getBundle("i18n").getString("loginLabel"));
 		loginLabel.setFont(new Font("Segoe UI", Font.BOLD, 24));
-		loginLabel.setBounds(74, 63, 274, 38);
+		loginLabel.setBounds(67, 34, 274, 38);
 		add(loginLabel);
 
 		loginUserField = new JTextField();
@@ -60,12 +64,12 @@ public class LoginPanel extends LoginFather {
 		});
 		loginUserField.setForeground(Color.GRAY);
 		loginUserField.setText(ResourceBundle.getBundle("i18n").getString("loginUserField")); //$NON-NLS-1$ //$NON-NLS-2$
-		loginUserField.setBounds(74, 206, 274, 29);
+		loginUserField.setBounds(67, 185, 274, 29);
 		add(loginUserField);
 		loginUserField.setColumns(10);
 
 		JButton loginButton = new JButton(ResourceBundle.getBundle("i18n").getString("loginButton"));
-		loginButton.setBounds(74, 412, 274, 29);
+		loginButton.setBounds(67, 412, 274, 29);
 		loginButton.setBorder(new RoundedBorder(10));
 		add(loginButton);
 
@@ -82,18 +86,22 @@ public class LoginPanel extends LoginFather {
 		loginForgotButton.setHorizontalAlignment(SwingConstants.RIGHT);
 		loginForgotButton.setOpaque(false);
 		loginForgotButton.setBorderPainted(false);
-		loginForgotButton.setBounds(168, 341, 192, 23);
+		loginForgotButton.setBounds(163, 320, 192, 23);
 		add(loginForgotButton);
 
 		JLabel loginPasswordLabel = new JLabel(ResourceBundle.getBundle("i18n").getString("loginPasswordLabel")); //$NON-NLS-1$ //$NON-NLS-2$
-		loginPasswordLabel.setBounds(74, 276, 84, 14);
+		loginPasswordLabel.setBounds(67, 255, 84, 14);
 		add(loginPasswordLabel);
 
 		JLabel loginUserLabel = new JLabel(ResourceBundle.getBundle("i18n").getString("loginUserLabel")); //$NON-NLS-1$ //$NON-NLS-2$
-		loginUserLabel.setBounds(74, 181, 84, 14);
+		loginUserLabel.setBounds(67, 160, 84, 14);
 		add(loginUserLabel);
 
 		loginSignInButton = new JButton(ResourceBundle.getBundle("i18n").getString("loginSignInButton")); //$NON-NLS-1$ //$NON-NLS-2$
+		loginSignInButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		loginSignInButton.addMouseMotionListener(new MouseMotionAdapter() {
 			@Override
 			public void mouseMoved(MouseEvent e) {
@@ -105,22 +113,24 @@ public class LoginPanel extends LoginFather {
 		loginSignInButton.setHorizontalAlignment(SwingConstants.LEFT);
 		loginSignInButton.setContentAreaFilled(false);
 		loginSignInButton.setBorderPainted(false);
-		loginSignInButton.setBounds(0, 555, 423, 23);
+		loginSignInButton.setBounds(0, 555, 409, 23);
 		add(loginSignInButton);
 
 		loginPasswordField = new JPasswordField();
 		loginPasswordField.addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusGained(FocusEvent e) {
-				if (loginPasswordField.getText().equals(ResourceBundle.getBundle("i18n").getString("loginPasswordField"))) {
+				if (loginPasswordField.getText()
+						.equals(ResourceBundle.getBundle("i18n").getString("loginPasswordField"))) {
 					loginPasswordField.setForeground(Color.BLACK);
 					loginPasswordField.setText("");
 				}
 			}
 		});
 		loginPasswordField.setText(ResourceBundle.getBundle("i18n").getString("loginPasswordField")); //$NON-NLS-1$ //$NON-NLS-2$
-		loginPasswordField.setBounds(74, 301, 274, 29);
+		loginPasswordField.setBounds(67, 280, 274, 29);
 		add(loginPasswordField);
 
 	}
+
 }

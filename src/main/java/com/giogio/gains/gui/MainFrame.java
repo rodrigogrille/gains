@@ -8,6 +8,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import com.giogio.gains.gui.login.LoginPanel;
+import com.giogio.gains.gui.login.SignInPanel;
 
 import java.awt.CardLayout;
 import java.awt.SystemColor;
@@ -16,6 +17,7 @@ public class MainFrame extends JFrame {
 
 	private JPanel contentPane;
 	private LoginPanel loginPanel;
+	private SignInPanel signInPanel;
 
 	/**
 	 * Launch the application.
@@ -26,6 +28,7 @@ public class MainFrame extends JFrame {
 				try {
 					MainFrame frame = new MainFrame();
 					frame.setVisible(true);
+
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -50,6 +53,9 @@ public class MainFrame extends JFrame {
 		loginPanel = new LoginPanel();
 		loginPanel.setBounds(240, 8, 409, 599);
 		contentPane.add(loginPanel);
+		signInPanel = new SignInPanel();
+		signInPanel.setBounds(240, 8, 409, 599);
+		contentPane.add(signInPanel);
 	}
 
 }
