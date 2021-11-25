@@ -33,7 +33,7 @@ public class LoginPanel extends LoginFather {
 	/**
 	 * Create the panel.
 	 */
-	public LoginPanel() {
+	public LoginPanel(final JPanel panel) {
 		addMouseMotionListener(new MouseMotionAdapter() {
 			@Override
 			public void mouseMoved(MouseEvent e) {
@@ -100,6 +100,12 @@ public class LoginPanel extends LoginFather {
 		loginSignInButton = new JButton(ResourceBundle.getBundle("i18n").getString("loginSignInButton")); //$NON-NLS-1$ //$NON-NLS-2$
 		loginSignInButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				panel.removeAll();
+				SignInPanel singInPanel = new SignInPanel(panel);
+				panel.add(singInPanel);
+				singInPanel.setBounds(225, 5, 439, 605);
+				singInPanel.setAlignmentX(CENTER_ALIGNMENT);
+				singInPanel.setAlignmentY(CENTER_ALIGNMENT);
 			}
 		});
 		loginSignInButton.addMouseMotionListener(new MouseMotionAdapter() {

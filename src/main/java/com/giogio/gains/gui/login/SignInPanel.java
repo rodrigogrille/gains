@@ -15,6 +15,8 @@ import javax.swing.SwingConstants;
 import javax.swing.JPasswordField;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class SignInPanel extends LoginFather {
 	private JTextField signInUserField;
@@ -30,13 +32,12 @@ public class SignInPanel extends LoginFather {
 	/**
 	 * Create the panel.
 	 */
-	public SignInPanel() {
+	public SignInPanel(final JPanel panel) {
 		addMouseMotionListener(new MouseMotionAdapter() {
 			@Override
 			public void mouseMoved(MouseEvent e) {
 				if (count == 1) {
 					SignInLoginButton.setForeground(Color.BLACK);
-					SignInButton.setForeground(Color.BLACK);
 				}
 			}
 		});
@@ -98,7 +99,6 @@ public class SignInPanel extends LoginFather {
 		SignInButton = new JButton((String) null);
 		SignInButton.setBorder(new RoundedBorder(10));
 		SignInButton.setBounds(67, 521, 274, 29);
-		SignInButton.setBackground(Color.GRAY);
 		SignInButton.setText(ResourceBundle.getBundle("i18n").getString("SignInButton"));
 		add(SignInButton);
 		
@@ -143,6 +143,23 @@ public class SignInPanel extends LoginFather {
 		add(signInBornDateLabel);
 		
 		SignInLoginButton = new JButton(ResourceBundle.getBundle("i18n").getString("SignInLoginButton")); //$NON-NLS-1$ //$NON-NLS-2$
+		SignInLoginButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				LoginPanel loginPanel = new LoginPanel(panel);
+				panel.removeAll();
+				panel.add(loginPanel);
+				loginPanel.setBounds(225, 5, 439, 605);
+				loginPanel.setAlignmentX(CENTER_ALIGNMENT);
+				loginPanel.setAlignmentY(CENTER_ALIGNMENT);
+			}
+		});
+		SignInLoginButton.addMouseMotionListener(new MouseMotionAdapter() {
+			@Override
+			public void mouseMoved(MouseEvent e) {
+				SignInLoginButton.setForeground(Color.GRAY);
+				count = 1;
+			}
+		});
 		SignInLoginButton.setHorizontalTextPosition(SwingConstants.LEFT);
 		SignInLoginButton.setHorizontalAlignment(SwingConstants.LEFT);
 		SignInLoginButton.setContentAreaFilled(false);

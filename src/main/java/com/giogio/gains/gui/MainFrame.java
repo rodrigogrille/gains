@@ -12,12 +12,13 @@ import com.giogio.gains.gui.login.SignInPanel;
 
 import java.awt.CardLayout;
 import java.awt.SystemColor;
+import java.awt.FlowLayout;
+import javax.swing.BoxLayout;
 
 public class MainFrame extends JFrame {
 
 	private JPanel contentPane;
 	private LoginPanel loginPanel;
-	private SignInPanel signInPanel;
 
 	/**
 	 * Launch the application.
@@ -46,16 +47,13 @@ public class MainFrame extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 905, 654);
 		contentPane = new JPanel();
+		contentPane.setRequestFocusEnabled(false);
 		contentPane.setBackground(SystemColor.window);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		loginPanel = new LoginPanel();
-		loginPanel.setBounds(240, 8, 409, 599);
+		loginPanel = new LoginPanel(contentPane);
+		loginPanel.setBounds(225, 5, 439, 605);
 		contentPane.add(loginPanel);
-		signInPanel = new SignInPanel();
-		signInPanel.setBounds(240, 8, 409, 599);
-		contentPane.add(signInPanel);
 	}
-
 }
