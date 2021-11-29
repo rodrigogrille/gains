@@ -27,3 +27,4 @@ target/classes/META-INF/maven/com.giogio/Gains/pom.xml
 target/maven-archiver/pom.properties
 target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst
 target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst
+target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst

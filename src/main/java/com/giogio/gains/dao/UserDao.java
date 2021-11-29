@@ -5,8 +5,6 @@
  */
 package com.giogio.gains.dao;
 
-import com.giogio.gains.classes.User;
-import com.giogio.gains.naming.UserNaming;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.DriverManager;
@@ -14,6 +12,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+
+import com.giogio.gains.classes.User;
+import com.giogio.gains.naming.TableNaming;
+import com.giogio.gains.naming.UserNaming;
 
 /**
  *
@@ -42,7 +44,7 @@ public class UserDao {
         if (user != null) {
             Connection conexion = conectar();
 
-            String sql = "INSERT INTO user_user (" + UserNaming.ID + ", " + UserNaming.NAME + ", " + UserNaming.PASS + ", " + UserNaming.EMAIL + ", " + UserNaming.BORN + ", " + UserNaming.ROLE + ") "
+            String sql = "INSERT INTO " + TableNaming.USER_USER  + " (" + UserNaming.ID + ", " + UserNaming.NAME + ", " + UserNaming.PASS + ", " + UserNaming.EMAIL + ", " + UserNaming.BORN + ", " + UserNaming.ROLE + ") "
                     + "             VALUES ( ?,   ?,   ?,   ?,   ?,   ? )";
 
             try {
@@ -65,7 +67,7 @@ public class UserDao {
     public static ArrayList<User> read() {
         User user = null;
         ArrayList<User> array = new ArrayList();
-        String sql = "SELECT" + UserNaming.ID + ", " + UserNaming.NAME + ", " + UserNaming.EMAIL + ", " + UserNaming.BORN + ", " + UserNaming.ROLE + "FROM user";
+        String sql = "SELECT " + UserNaming.ID + ", " + UserNaming.NAME + ", " + UserNaming.EMAIL + ", " + UserNaming.BORN + ", " + UserNaming.ROLE + " FROM " + TableNaming.USER_USER;
         try {
             Connection conexion = conectar();
 
@@ -92,7 +94,7 @@ public class UserDao {
 
     public static boolean update(User user) {
         if (user != null) {
-            String sql = "UPDATE clientes " + UserNaming.NAME + "=?, " + UserNaming.PASS + "=?, " + UserNaming.EMAIL + "=?, " + UserNaming.BORN + "=?, " + UserNaming.ROLE + "=? " + " WHERE " + UserNaming.ID + "=?";
+            String sql = "UPDATE "+ TableNaming.USER_USER  + " SET " +  UserNaming.NAME + "=?, " + UserNaming.PASS + "=?, " + UserNaming.EMAIL + "=?, " + UserNaming.BORN + "=?, " + UserNaming.ROLE + "=? " + " WHERE " + UserNaming.ID + "=?";
             try {
                 Connection conexion = conectar();
                 PreparedStatement sentencia = conexion.prepareStatement(sql);
@@ -113,7 +115,7 @@ public class UserDao {
     }
 
     public static boolean delete(User user) {
-        String sql = "DELETE FROM user " + "WHERE" + UserNaming.ID + "=?";
+        String sql = "DELETE FROM " + TableNaming.USER_USER  + " WHERE " + UserNaming.ID + "=?";
         try {
             Connection conexion = conectar();
             PreparedStatement sentencia = conexion.prepareStatement(sql);
