@@ -58,12 +58,35 @@ public class UserDao {
                 sentencia.executeUpdate();
                 conexion.close();
             } catch (SQLException ex) {
+            	System.out.println(ex);
                 return false;
             }
         }
         return true;
     }
 
+    public static Boolean readUser(String name) {
+    	String sql = "SELECT " + UserNaming.ID  + " FROM " + TableNaming.USER_USER;
+        try {
+            Connection conexion = conectar();
+
+            PreparedStatement sentencia = conexion.prepareStatement(sql);
+
+            ResultSet rs = sentencia.executeQuery();
+            while (rs.next()) {
+                String id = rs.getString(UserNaming.ID);
+                if ( id.equals(name)) {
+                	return true;
+                }
+            }
+            conexion.close();
+        } catch (SQLException ex) {
+        	System.out.println("Error on user query");
+        	return false;
+        }
+    	return false;
+    }
+    
     public static ArrayList<User> read() {
         User user = null;
         ArrayList<User> array = new ArrayList();
