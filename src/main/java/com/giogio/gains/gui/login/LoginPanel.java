@@ -4,11 +4,16 @@ import javax.swing.JPanel;
 import java.awt.Rectangle;
 import java.util.ResourceBundle;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.SwingConstants;
 
+import com.giogio.gains.classes.CompareStrings;
+import com.giogio.gains.classes.Parser;
+import com.giogio.gains.dao.UserDao;
 import com.giogio.gains.gui.MainFrame;
 import com.giogio.gains.gui.custom.RoundedBorder;
 
@@ -69,6 +74,29 @@ public class LoginPanel extends LoginFather {
 		loginUserField.setColumns(10);
 
 		JButton loginButton = new JButton(ResourceBundle.getBundle("i18n").getString("loginButton"));
+		loginButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (loginUserField.getText().equals(ResourceBundle.getBundle("i18n").getString("loginUserField"))
+						|| loginPasswordField.getText()
+								.equals(ResourceBundle.getBundle("i18n").getString("loginPasswordField"))
+						|| loginUserField.getText().equals("")
+						|| loginPasswordField.getText()
+								.equals("")) {
+					JOptionPane.showMessageDialog(null,
+							ResourceBundle.getBundle("i18n").getString("logInInfoMessageDefault"));
+				} else {
+					if (CompareStrings.compareUserNamePass(UserDao.read(), loginUserField.getText(),
+							Parser.getPass(loginPasswordField.getPassword()))) {
+						JOptionPane.showMessageDialog(null, "Login succeded");
+					} else {
+						JOptionPane.showMessageDialog(null,
+								ResourceBundle.getBundle("i18n").getString("logInInfoMessageLogin"));
+					}
+				}
+				loginUserField.setText("");
+				loginPasswordField.setText("");
+			}
+		});
 		loginButton.setBounds(67, 412, 274, 29);
 		loginButton.setBorder(new RoundedBorder(10));
 		add(loginButton);

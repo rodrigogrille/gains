@@ -64,33 +64,11 @@ public class UserDao {
         }
         return true;
     }
-
-    public static Boolean readUser(String name) {
-    	String sql = "SELECT " + UserNaming.ID  + " FROM " + TableNaming.USER_USER;
-        try {
-            Connection conexion = conectar();
-
-            PreparedStatement sentencia = conexion.prepareStatement(sql);
-
-            ResultSet rs = sentencia.executeQuery();
-            while (rs.next()) {
-                String id = rs.getString(UserNaming.ID);
-                if ( id.equals(name)) {
-                	return true;
-                }
-            }
-            conexion.close();
-        } catch (SQLException ex) {
-        	System.out.println("Error on user query");
-        	return false;
-        }
-    	return false;
-    }
     
     public static ArrayList<User> read() {
         User user = null;
         ArrayList<User> array = new ArrayList();
-        String sql = "SELECT " + UserNaming.ID + ", " + UserNaming.NAME + ", " + UserNaming.EMAIL + ", " + UserNaming.BORN + ", " + UserNaming.ROLE + " FROM " + TableNaming.USER_USER;
+        String sql = "SELECT " + UserNaming.ID + ", " + UserNaming.NAME + ", " +  UserNaming.PASS + ", " + UserNaming.EMAIL + ", " + UserNaming.BORN + ", " + UserNaming.ROLE + " FROM " + TableNaming.USER_USER;
         try {
             Connection conexion = conectar();
 
@@ -100,11 +78,12 @@ public class UserDao {
             while (rs.next()) {
                 String id = rs.getString(UserNaming.ID);
                 String name = rs.getString(UserNaming.NAME);
+                String pass = rs.getString(UserNaming.PASS);
                 String email = rs.getString(UserNaming.EMAIL);
                 Date born_date = rs.getDate(UserNaming.BORN);
                 int role_id = rs.getInt(UserNaming.ROLE);
 
-                user = new User(id, name, email, born_date, role_id);
+                user = new User(id, name, pass, email, born_date, role_id);
                 array.add(user);
             }
             conexion.close();

@@ -14,11 +14,14 @@ import java.util.ResourceBundle;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
+import com.giogio.gains.classes.CompareStrings;
+import com.giogio.gains.classes.Parser;
 import com.giogio.gains.classes.PasswordEncrypt;
 import com.giogio.gains.classes.User;
 import com.giogio.gains.dao.UserDao;
@@ -118,21 +121,47 @@ public class SignInPanel extends LoginFather {
 						|| signInEmailField.getText()
 								.equals(ResourceBundle.getBundle("i18n").getString("signInEmailField"))
 						|| signInBornDateField.getText()
-								.equals(ResourceBundle.getBundle("i18n").getString("signInBornDateField"))) {
-					log.info("Modify the Default Values");
+								.equals(ResourceBundle.getBundle("i18n").getString("signInBornDateField"))
+						|| signInNameField.getText().equals("") || signInUserField.getText().equals("")
+						|| signInPasswordField.getText().equals("") || signInEmailField.getText().equals("")
+						|| signInBornDateField.getText().equals("")) {
+					JOptionPane.showMessageDialog(null,
+							ResourceBundle.getBundle("i18n").getString("signInInfoMessageDefault"));
 				} else {
-					if (Arrays.equals(signInPasswordField.getPassword(), signInRepeatPasswordField.getPassword())) {
-						String value = String.valueOf(signInPasswordField.getPassword());
-						if (!UserDao.readUser(signInUserField.getText())) {
-							User user = new User(signInUserField.getText(), signInNameField.getText(),
-									PasswordEncrypt.encryptPassword(value).toString(), signInEmailField.getText(),
-									new Date(System.currentTimeMillis()), 2);
-							UserDao.create(user);
-						} else {
-							log.info("The User Already Exists");
-						}
+					if (CompareStrings.dateValidation(signInBornDateField.getText())) {
+						if (CompareStrings.comparePasswordSignIn(signInPasswordField.getPassword(),
+								signInRepeatPasswordField.getPassword())) {
+							String value = Parser.getPass(signInPasswordField.getPassword());
+							if (!CompareStrings.compareUserName(UserDao.read(), signInUserField.getText())) {
+								User user = new User(signInUserField.getText(), signInNameField.getText(),
+										PasswordEncrypt.encryptPassword(value).toString(), signInEmailField.getText(),
+										Parser.getDate(signInBornDateField.getText()), 2);
+								UserDao.create(user);
+								JOptionPane.showMessageDialog(null,
+										ResourceBundle.getBundle("i18n").getString("signInInfoMessageRegister"));
+								LoginPanel loginPanel = new LoginPanel(panel);
+								panel.removeAll();
+								panel.add(loginPanel);
+								loginPanel.setBounds(225, 5, 439, 605);
+								loginPanel.setAlignmentX(CENTER_ALIGNMENT);
+								loginPanel.setAlignmentY(CENTER_ALIGNMENT);
 
+							} else {
+								JOptionPane.showMessageDialog(null,
+										ResourceBundle.getBundle("i18n").getString("signInInfoMessageUser"));
+								log.info("The User Already Exists");
+							}
+
+						} else {
+							JOptionPane.showMessageDialog(null,
+									ResourceBundle.getBundle("i18n").getString("signInInfoMessagePass"));
+							log.info("Both password field have to be the same");
+						}
+					} else {
+						JOptionPane.showMessageDialog(null, ResourceBundle.getBundle("i18n").getString("signInInfoMessageDate"));
+						log.info("The date format is incorrect");
 					}
+
 				}
 
 			}
