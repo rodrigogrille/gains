@@ -51,7 +51,7 @@ public class MainFrame extends JFrame {
 		setResizable(false);
 		getContentPane().setLayout(new CardLayout(0, 0));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 1082, 677);
+		setBounds(400, 200, 1082, 677);
 		
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
@@ -87,6 +87,8 @@ public class MainFrame extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+		MainPanel mainPanel = new MainPanel(this);
+		setContentPane(mainPanel);
 	}
 	
 	public static void chargePanel(JPanel panel) {

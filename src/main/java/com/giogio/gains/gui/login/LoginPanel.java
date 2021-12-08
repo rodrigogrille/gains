@@ -84,9 +84,10 @@ public class LoginPanel extends LoginFather {
 				} else {
 					if (CompareStrings.compareUserNamePass(UserDao.read(), loginUserField.getText(),
 							Parser.getPass(loginPasswordField.getPassword()))) {
-//						MainPanel mainPanel = new MainPanel(frame);
-//						frame.chargePanel(mainPanel);
-						JOptionPane.showMessageDialog(null,"LOGIN SUCEDED");
+						MainFrame mainFrame = new MainFrame();
+						frame.setVisible(false);
+						mainFrame.setVisible(true);
+						
 					} else {
 						JOptionPane.showMessageDialog(null,
 								ResourceBundle.getBundle("i18n").getString("logInInfoMessageLogin"));
