@@ -1,6 +1,7 @@
 package com.giogio.gains.gui.main;
 
 import javax.swing.JPanel;
+
 import java.awt.Rectangle;
 import javax.swing.BoxLayout;
 import java.awt.BorderLayout;
@@ -8,70 +9,62 @@ import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import javax.swing.JLabel;
+import java.awt.event.MouseMotionAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.SystemColor;
+import java.awt.Color;
+import javax.swing.JButton;
+import java.awt.FlowLayout;
 
 public class MainPanel extends JPanel {
-
+	private JPanel WorkoutPanel;
+	private JPanel TrainPanel;
+	private JPanel GraphicPanel;
+	private JPanel TablePanel;
 	/**
 	 * Create the panel.
 	 */
-	public MainPanel() {
+	public MainPanel(final MainFrame frame) {
 		setBounds(new Rectangle(0, 0, 869, 605));
-		GridBagLayout gridBagLayout = new GridBagLayout();
-		gridBagLayout.rowHeights = new int[] {0, 0, 0, 0};
-		gridBagLayout.columnWeights = new double[]{1.0};
-		gridBagLayout.rowWeights = new double[]{1.0, 1.0, 1.0, 1.0};
-		setLayout(gridBagLayout);
+		setLayout(null);
 		
-		JPanel WorkoutPanel = new JPanel();
-		WorkoutPanel.setLayout(null);
-		GridBagConstraints gbc_WorkoutPanel = new GridBagConstraints();
-		gbc_WorkoutPanel.insets = new Insets(0, 0, 5, 0);
-		gbc_WorkoutPanel.fill = GridBagConstraints.BOTH;
-		gbc_WorkoutPanel.gridx = 0;
-		gbc_WorkoutPanel.gridy = 0;
-		add(WorkoutPanel, gbc_WorkoutPanel);
+		WorkoutPanel = new JPanel();
+		WorkoutPanel.addMouseMotionListener(new MouseMotionAdapter() {
+			@Override
+			public void mouseMoved(MouseEvent e) {
+//				WorkoutPanel.setBackground(Color.LIGHT_GRAY);
+//				TrainPanel.setBackground(new Color(240,240,240));
+//				GraphicPanel.setBackground(new Color(240,240,240));
+//				TablePanel.setBackground(new Color(240,240,240));
+			}
+		});
+		setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
+		add(WorkoutPanel);
+		WorkoutPanel.setLayout(new BorderLayout(0, 0));
 		
-		JLabel lblNewLabel = new JLabel("Ejercicios");
-		lblNewLabel.setBounds(411, 66, 46, 14);
-		WorkoutPanel.add(lblNewLabel);
+		JButton btnNewButton_1 = new JButton("Ejercicios");
+		WorkoutPanel.add(btnNewButton_1);
 		
-		JPanel TablePanel = new JPanel();
-		TablePanel.setLayout(null);
-		GridBagConstraints gbc_TablePanel = new GridBagConstraints();
-		gbc_TablePanel.insets = new Insets(0, 0, 5, 0);
-		gbc_TablePanel.fill = GridBagConstraints.BOTH;
-		gbc_TablePanel.gridx = 0;
-		gbc_TablePanel.gridy = 1;
-		add(TablePanel, gbc_TablePanel);
+		TablePanel = new JPanel();
+		add(TablePanel);
+		TablePanel.setLayout(new BorderLayout(0, 0));
 		
-		JLabel lblNewLabel_1 = new JLabel("Tablas");
-		lblNewLabel_1.setBounds(411, 66, 46, 14);
-		TablePanel.add(lblNewLabel_1);
+		JButton btnNewButton = new JButton("Tablas");
+		TablePanel.add(btnNewButton);
 		
-		JPanel TrainPanel = new JPanel();
-		TrainPanel.setLayout(null);
-		GridBagConstraints gbc_TrainPanel = new GridBagConstraints();
-		gbc_TrainPanel.insets = new Insets(0, 0, 5, 0);
-		gbc_TrainPanel.fill = GridBagConstraints.BOTH;
-		gbc_TrainPanel.gridx = 0;
-		gbc_TrainPanel.gridy = 2;
-		add(TrainPanel, gbc_TrainPanel);
+		TrainPanel = new JPanel();
+		add(TrainPanel);
+		TrainPanel.setLayout(new BorderLayout(0, 0));
 		
-		JLabel lblNewLabel_2 = new JLabel("Entreno");
-		lblNewLabel_2.setBounds(411, 66, 46, 14);
-		TrainPanel.add(lblNewLabel_2);
+		JButton btnNewButton_2 = new JButton("Entreno");
+		TrainPanel.add(btnNewButton_2, BorderLayout.CENTER);
 		
-		JPanel GraphicPanel = new JPanel();
-		GraphicPanel.setLayout(null);
-		GridBagConstraints gbc_GraphicPanel = new GridBagConstraints();
-		gbc_GraphicPanel.fill = GridBagConstraints.BOTH;
-		gbc_GraphicPanel.gridx = 0;
-		gbc_GraphicPanel.gridy = 3;
-		add(GraphicPanel, gbc_GraphicPanel);
+		GraphicPanel = new JPanel();
+		add(GraphicPanel);
+		GraphicPanel.setLayout(new BorderLayout(0, 0));
 		
-		JLabel lblNewLabel_3 = new JLabel("Estadísticas");
-		lblNewLabel_3.setBounds(404, 66, 61, 14);
-		GraphicPanel.add(lblNewLabel_3);
+		JButton btnNewButton_3 = new JButton("Estadísticas");
+		GraphicPanel.add(btnNewButton_3, BorderLayout.CENTER);
 
 	}
 }

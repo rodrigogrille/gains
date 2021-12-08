@@ -1,34 +1,31 @@
 package com.giogio.gains.gui.login;
 
-import javax.swing.JPanel;
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.Rectangle;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseMotionAdapter;
 import java.util.ResourceBundle;
+
+import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-
-import java.awt.Font;
+import javax.swing.JPasswordField;
 import javax.swing.JTextField;
-import javax.swing.JButton;
 import javax.swing.SwingConstants;
 
 import com.giogio.gains.classes.CompareStrings;
 import com.giogio.gains.classes.Parser;
 import com.giogio.gains.dao.UserDao;
-import com.giogio.gains.gui.MainFrame;
 import com.giogio.gains.gui.custom.RoundedBorder;
-
-import java.awt.Color;
-import java.awt.event.FocusAdapter;
-import java.awt.event.FocusEvent;
-import java.awt.event.MouseMotionAdapter;
-import java.awt.event.MouseEvent;
-import java.awt.SystemColor;
-import javax.swing.JPasswordField;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
+import com.giogio.gains.gui.main.MainFrame;
+import com.giogio.gains.gui.main.MainPanel;
 
 public class LoginPanel extends LoginFather {
-	private SignInPanel signInPanel;
 	private JTextField loginUserField;
 	private JButton loginForgotButton;
 	private JButton loginSignInButton;
@@ -38,7 +35,7 @@ public class LoginPanel extends LoginFather {
 	/**
 	 * Create the panel.
 	 */
-	public LoginPanel(final JPanel panel) {
+	public LoginPanel(final LoginFrame frame) {
 		addMouseMotionListener(new MouseMotionAdapter() {
 			@Override
 			public void mouseMoved(MouseEvent e) {
@@ -87,7 +84,9 @@ public class LoginPanel extends LoginFather {
 				} else {
 					if (CompareStrings.compareUserNamePass(UserDao.read(), loginUserField.getText(),
 							Parser.getPass(loginPasswordField.getPassword()))) {
-						JOptionPane.showMessageDialog(null, "Login succeded");
+//						MainPanel mainPanel = new MainPanel(frame);
+//						frame.chargePanel(mainPanel);
+						JOptionPane.showMessageDialog(null,"LOGIN SUCEDED");
 					} else {
 						JOptionPane.showMessageDialog(null,
 								ResourceBundle.getBundle("i18n").getString("logInInfoMessageLogin"));
@@ -128,12 +127,8 @@ public class LoginPanel extends LoginFather {
 		loginSignInButton = new JButton(ResourceBundle.getBundle("i18n").getString("loginSignInButton")); //$NON-NLS-1$ //$NON-NLS-2$
 		loginSignInButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				panel.removeAll();
-				SignInPanel singInPanel = new SignInPanel(panel);
-				panel.add(singInPanel);
-				singInPanel.setBounds(225, 5, 439, 605);
-				singInPanel.setAlignmentX(CENTER_ALIGNMENT);
-				singInPanel.setAlignmentY(CENTER_ALIGNMENT);
+				SignInPanel signInPanel = new SignInPanel(frame);
+				frame.setContentPane(signInPanel);
 			}
 		});
 		loginSignInButton.addMouseMotionListener(new MouseMotionAdapter() {

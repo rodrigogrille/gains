@@ -26,6 +26,7 @@ import com.giogio.gains.classes.PasswordEncrypt;
 import com.giogio.gains.classes.User;
 import com.giogio.gains.dao.UserDao;
 import com.giogio.gains.gui.custom.RoundedBorder;
+import com.giogio.gains.gui.main.MainFrame;
 
 import lombok.extern.log4j.Log4j2;
 
@@ -44,7 +45,7 @@ public class SignInPanel extends LoginFather {
 	/**
 	 * Create the panel.
 	 */
-	public SignInPanel(final JPanel panel) {
+	public SignInPanel(final LoginFrame frame) {
 		addMouseMotionListener(new MouseMotionAdapter() {
 			@Override
 			public void mouseMoved(MouseEvent e) {
@@ -139,12 +140,8 @@ public class SignInPanel extends LoginFather {
 								UserDao.create(user);
 								JOptionPane.showMessageDialog(null,
 										ResourceBundle.getBundle("i18n").getString("signInInfoMessageRegister"));
-								LoginPanel loginPanel = new LoginPanel(panel);
-								panel.removeAll();
-								panel.add(loginPanel);
-								loginPanel.setBounds(225, 5, 439, 605);
-								loginPanel.setAlignmentX(CENTER_ALIGNMENT);
-								loginPanel.setAlignmentY(CENTER_ALIGNMENT);
+								LoginPanel loginPanel = new LoginPanel(frame);
+								frame.setContentPane(loginPanel);
 
 							} else {
 								JOptionPane.showMessageDialog(null,
@@ -215,12 +212,8 @@ public class SignInPanel extends LoginFather {
 		SignInLoginButton = new JButton(ResourceBundle.getBundle("i18n").getString("SignInLoginButton")); //$NON-NLS-1$ //$NON-NLS-2$
 		SignInLoginButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				LoginPanel loginPanel = new LoginPanel(panel);
-				panel.removeAll();
-				panel.add(loginPanel);
-				loginPanel.setBounds(225, 5, 439, 605);
-				loginPanel.setAlignmentX(CENTER_ALIGNMENT);
-				loginPanel.setAlignmentY(CENTER_ALIGNMENT);
+				LoginPanel loginPanel = new LoginPanel(frame);
+				frame.setContentPane(loginPanel);
 			}
 		});
 		SignInLoginButton.addMouseMotionListener(new MouseMotionAdapter() {
