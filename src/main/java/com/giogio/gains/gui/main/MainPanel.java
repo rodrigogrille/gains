@@ -27,19 +27,34 @@ import javax.swing.border.MatteBorder;
 import javax.swing.SwingConstants;
 import javax.swing.ImageIcon;
 import javax.swing.JTextPane;
+import java.awt.Font;
+import javax.swing.JLayeredPane;
+import java.awt.CardLayout;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class MainPanel extends JPanel {
 	private JPanel panel;
 	private Component verticalStrut;
-	private JPanel panel_1;
+	private JLayeredPane layeredPane;
+	private JPanel mainPanel;
 	private JPanel exercicePanel;
 	private JPanel tablePanel;
 	private JPanel workoutPanel;
 	private JPanel statisticsPanel;
+	private JLabel menuLabel;
+	private JPanel panel_1;
+	private JPanel panel_2;
+	private JPanel panel_3;
+	private JPanel panel_4;
+	private JButton btnNewButton;
+	private JButton btnTablas;
+	private JButton btnEntreno;
+	private JButton btnEstadisticas;
 	private JLabel lblNewLabel;
-	private JLabel lblTablas;
-	private JLabel lblEntreno;
-	private JLabel lblEstadisticas;
+	private JLabel lblNewLabel_1;
+	private JLabel lblNewLabel_2;
+	private JLabel lblNewLabel_3;
 	/**
 	 * Create the panel.
 	 */
@@ -51,54 +66,134 @@ public class MainPanel extends JPanel {
 		panel = new JPanel();
 		add(panel, BorderLayout.NORTH);
 		
-		verticalStrut = Box.createVerticalStrut(60);
+		menuLabel = new JLabel("Menú");
+		menuLabel.setFont(new Font("Tahoma", Font.BOLD, 26));
+		panel.add(menuLabel);
+		
+		verticalStrut = Box.createVerticalStrut(40);
 		panel.add(verticalStrut);
 		
+		layeredPane = new JLayeredPane();
+		add(layeredPane, BorderLayout.CENTER);
+		layeredPane.setLayout(new CardLayout(0, 0));
+		
+		mainPanel = new JPanel();
+		layeredPane.add(mainPanel, "name_610787174912100");
+		mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.X_AXIS));
+		
 		panel_1 = new JPanel();
-		panel_1.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
-		add(panel_1, BorderLayout.CENTER);
-		panel_1.setLayout(new BoxLayout(panel_1, BoxLayout.X_AXIS));
+		mainPanel.add(panel_1);
+		panel_1.setLayout(null);
+		
+		btnNewButton = new JButton("Ejercicios");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				chargeExercice();
+				menuLabel.setText("Ejercicios");
+			}
+		});
+		btnNewButton.setContentAreaFilled(false);
+		btnNewButton.setBounds(0, 0, 270, 627);
+		panel_1.add(btnNewButton);
+		
+		panel_2 = new JPanel();
+		mainPanel.add(panel_2);
+		panel_2.setLayout(null);
+		
+		btnTablas = new JButton("Tablas");
+		btnTablas.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				chargeTable();
+				menuLabel.setText("Tablas");
+			}
+		});
+		btnTablas.setContentAreaFilled(false);
+		btnTablas.setBounds(0, 0, 270, 627);
+		panel_2.add(btnTablas);
+		
+		panel_3 = new JPanel();
+		mainPanel.add(panel_3);
+		panel_3.setLayout(null);
+		
+		btnEntreno = new JButton("Entreno");
+		btnEntreno.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				chargeWorkout();
+				menuLabel.setText("Entreno");
+			}
+		});
+		btnEntreno.setContentAreaFilled(false);
+		btnEntreno.setBounds(0, 0, 270, 627);
+		panel_3.add(btnEntreno);
+		
+		panel_4 = new JPanel();
+		mainPanel.add(panel_4);
+		panel_4.setLayout(null);
+		
+		btnEstadisticas = new JButton("Estadísticas");
+		btnEstadisticas.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				chargeStatistics();
+				menuLabel.setText("Estadísticas");
+			}
+		});
+		btnEstadisticas.setContentAreaFilled(false);
+		btnEstadisticas.setBounds(0, 0, 270, 627);
+		panel_4.add(btnEstadisticas);
 		
 		exercicePanel = new JPanel();
-		exercicePanel.setBorder(new MatteBorder(1, 1, 1, 0, (Color) Color.DARK_GRAY));
-		panel_1.add(exercicePanel);
-		exercicePanel.setLayout(null);
+		layeredPane.add(exercicePanel, "name_610788982175000");
 		
-		lblNewLabel = new JLabel("Ejercicios");
-		lblNewLabel.setHorizontalTextPosition(SwingConstants.CENTER);
-		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setBounds(45, 294, 179, 14);
+		lblNewLabel = new JLabel("Panel de ejercicio");
 		exercicePanel.add(lblNewLabel);
 		
 		tablePanel = new JPanel();
-		tablePanel.setBorder(new MatteBorder(1, 1, 1, 0, (Color) Color.DARK_GRAY));
-		panel_1.add(tablePanel);
-		tablePanel.setLayout(null);
+		layeredPane.add(tablePanel, "name_610791228577600");
 		
-		lblTablas = new JLabel("Tablas");
-		lblTablas.setHorizontalAlignment(SwingConstants.CENTER);
-		lblTablas.setBounds(45, 294, 179, 14);
-		tablePanel.add(lblTablas);
+		lblNewLabel_1 = new JLabel("panel de tablas");
+		tablePanel.add(lblNewLabel_1);
 		
 		workoutPanel = new JPanel();
-		workoutPanel.setBorder(new MatteBorder(1, 1, 1, 0, (Color) Color.DARK_GRAY));
-		panel_1.add(workoutPanel);
-		workoutPanel.setLayout(null);
+		layeredPane.add(workoutPanel, "name_610793239884300");
 		
-		lblEntreno = new JLabel("Entreno");
-		lblEntreno.setHorizontalAlignment(SwingConstants.CENTER);
-		lblEntreno.setBounds(45, 294, 179, 14);
-		workoutPanel.add(lblEntreno);
+		lblNewLabel_2 = new JLabel("panel de entreno");
+		workoutPanel.add(lblNewLabel_2);
 		
 		statisticsPanel = new JPanel();
-		statisticsPanel.setBorder(new MatteBorder(1, 1, 1, 1, (Color) Color.DARK_GRAY));
-		panel_1.add(statisticsPanel);
-		statisticsPanel.setLayout(null);
+		layeredPane.add(statisticsPanel, "name_610795343312600");
 		
-		lblEstadisticas = new JLabel("Estadisticas");
-		lblEstadisticas.setHorizontalAlignment(SwingConstants.CENTER);
-		lblEstadisticas.setBounds(45, 294, 179, 14);
-		statisticsPanel.add(lblEstadisticas);
+		lblNewLabel_3 = new JLabel("panel de estadisticas");
+		statisticsPanel.add(lblNewLabel_3);
 
+	}
+	
+	public void chargeTable() {
+		layeredPane.removeAll();
+		layeredPane.add(tablePanel);
+		menuLabel.setText("Tablas");
+	}
+
+	public void chargeWorkout() {
+		layeredPane.removeAll();
+		layeredPane.add(workoutPanel);
+		menuLabel.setText("Entreno");
+	}
+	
+	public void chargeExercice() {
+		layeredPane.removeAll();
+		layeredPane.add(exercicePanel);
+		menuLabel.setText("Ejercicios");
+	}
+	
+	public void chargeStatistics() {
+		layeredPane.removeAll();
+		layeredPane.add(statisticsPanel);
+		menuLabel.setText("Estadísticas");
+	}
+	
+	public void chargeMain() {
+		layeredPane.removeAll();
+		layeredPane.add(mainPanel);
+		menuLabel.setText("Main");
 	}
 }
