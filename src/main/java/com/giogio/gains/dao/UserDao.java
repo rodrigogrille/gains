@@ -125,19 +125,17 @@ public class UserDao {
 
 	public static boolean update(User user) {
 		if (user != null) {
-			String sql = "UPDATE " + BdNaming.USER_USER + " SET " + UserNaming.NAME + "=?, " + UserNaming.PASS
-					+ "=?, " + UserNaming.EMAIL + "=?, " + UserNaming.BORN + "=?, " + UserNaming.ROLE + "=? "
-					+ " WHERE " + UserNaming.ID + "=?";
+			String sql = "UPDATE " + BdNaming.USER_USER + " SET " + UserNaming.NAME + "=?, " + UserNaming.EMAIL + "=?, "
+					+ UserNaming.BORN + "=?, " + UserNaming.ROLE + "=? " + " WHERE " + UserNaming.ID + "=?";
 			try {
 				Connection conexion = conectar();
 				PreparedStatement sentencia = conexion.prepareStatement(sql);
 
 				sentencia.setString(1, user.getName());
-				sentencia.setString(2, user.getPasswd());
-				sentencia.setString(3, user.getEmail());
-				sentencia.setDate(4, user.getBorn_date());
-				sentencia.setInt(5, user.getRole_id());
-				sentencia.setString(6, user.getId());
+				sentencia.setString(2, user.getEmail());
+				sentencia.setDate(3, user.getBorn_date());
+				sentencia.setInt(4, user.getRole_id());
+				sentencia.setString(5, user.getId());
 				sentencia.executeUpdate();
 				conexion.close();
 			} catch (SQLException ex) {

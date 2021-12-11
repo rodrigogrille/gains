@@ -24,6 +24,7 @@ import com.giogio.gains.classes.User;
 import com.giogio.gains.dao.UserDao;
 import com.giogio.gains.gui.custom.RoundedBorder;
 import com.giogio.gains.gui.main.MainFrame;
+import com.giogio.gains.gui.main.MainFrameAdmin;
 import com.giogio.gains.gui.main.MainPanel;
 
 public class LoginPanel extends LoginFather {
@@ -86,9 +87,16 @@ public class LoginPanel extends LoginFather {
 						if (CompareStrings.compareUserPass(user, Parser.getPass(loginPasswordField.getPassword()))) {
 							User currentUser = new User(user.getId(), user.getName(), user.getEmail(),
 									user.getBorn_date(), user.getRole_id());
-							MainFrame mainFrame = new MainFrame(currentUser);
-							frame.setVisible(false);
-							mainFrame.setVisible(true);
+							if (user.getRole_id() == 1) {
+								MainFrameAdmin mainFrame = new MainFrameAdmin(currentUser);
+								frame.setVisible(false);
+								mainFrame.setVisible(true);
+							} else {
+								MainFrame mainFrame = new MainFrame(currentUser);
+								frame.setVisible(false);
+								mainFrame.setVisible(true);
+							}
+							
 
 						} else {
 							JOptionPane.showMessageDialog(null,
