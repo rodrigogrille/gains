@@ -14,7 +14,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import com.giogio.gains.classes.User;
-import com.giogio.gains.naming.TableNaming;
+import com.giogio.gains.naming.BdNaming;
 import com.giogio.gains.naming.UserNaming;
 
 import lombok.extern.log4j.Log4j2;
@@ -47,7 +47,7 @@ public class UserDao {
 		if (user != null) {
 			Connection conexion = conectar();
 
-			String sql = "INSERT INTO " + TableNaming.USER_USER + " (" + UserNaming.ID + ", " + UserNaming.NAME + ", "
+			String sql = "INSERT INTO " + BdNaming.USER_USER + " (" + UserNaming.ID + ", " + UserNaming.NAME + ", "
 					+ UserNaming.PASS + ", " + UserNaming.EMAIL + ", " + UserNaming.BORN + ", " + UserNaming.ROLE + ") "
 					+ "             VALUES ( ?,   ?,   ?,   ?,   ?,   ? )";
 
@@ -73,7 +73,7 @@ public class UserDao {
 		User user = null;
 		ArrayList<User> array = new ArrayList();
 		String sql = "SELECT " + UserNaming.ID + ", " + UserNaming.NAME + ", " + UserNaming.PASS + ", "
-				+ UserNaming.EMAIL + ", " + UserNaming.BORN + ", " + UserNaming.ROLE + " FROM " + TableNaming.USER_USER;
+				+ UserNaming.EMAIL + ", " + UserNaming.BORN + ", " + UserNaming.ROLE + " FROM " + BdNaming.USER_USER;
 		try {
 			Connection conexion = conectar();
 
@@ -101,7 +101,7 @@ public class UserDao {
 
 	public static User readUserById(String userID) {
 		User user = null;
-		String sql = "SELECT * FROM " + TableNaming.USER_USER + " WHERE " + UserNaming.ID + "=?";
+		String sql = "SELECT * FROM " + BdNaming.USER_USER + " WHERE " + UserNaming.ID + "=?";
 		try {
 			Connection conexion = conectar();
 			PreparedStatement sentencia = conexion.prepareStatement(sql);
@@ -125,7 +125,7 @@ public class UserDao {
 
 	public static boolean update(User user) {
 		if (user != null) {
-			String sql = "UPDATE " + TableNaming.USER_USER + " SET " + UserNaming.NAME + "=?, " + UserNaming.PASS
+			String sql = "UPDATE " + BdNaming.USER_USER + " SET " + UserNaming.NAME + "=?, " + UserNaming.PASS
 					+ "=?, " + UserNaming.EMAIL + "=?, " + UserNaming.BORN + "=?, " + UserNaming.ROLE + "=? "
 					+ " WHERE " + UserNaming.ID + "=?";
 			try {
@@ -148,7 +148,7 @@ public class UserDao {
 	}
 
 	public static boolean delete(User user) {
-		String sql = "DELETE FROM " + TableNaming.USER_USER + " WHERE " + UserNaming.ID + "=?";
+		String sql = "DELETE FROM " + BdNaming.USER_USER + " WHERE " + UserNaming.ID + "=?";
 		try {
 			Connection conexion = conectar();
 			PreparedStatement sentencia = conexion.prepareStatement(sql);

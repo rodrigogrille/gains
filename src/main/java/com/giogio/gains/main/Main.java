@@ -8,10 +8,12 @@ package com.giogio.gains.main;
 import java.sql.Date;
 
 import com.giogio.gains.classes.PasswordEncrypt;
+import com.giogio.gains.classes.Table;
 import com.giogio.gains.classes.User;
 import com.giogio.gains.classes.Exercice;
 import com.giogio.gains.dao.UserDao;
 import com.giogio.gains.dao.ExerciceDao;
+import com.giogio.gains.dao.TableDao;
 
 /**
  *
@@ -23,6 +25,9 @@ public class Main {
         	System.out.println(user.toString());
         }
         for (Exercice workout : ExerciceDao.read()) {
+        	System.out.println(workout.toString());
+        }
+        for (Table workout : TableDao.read()) {
         	System.out.println(workout.toString());
         }
     }

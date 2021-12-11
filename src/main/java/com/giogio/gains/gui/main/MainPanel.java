@@ -28,7 +28,9 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.border.MatteBorder;
 
 import com.giogio.gains.classes.Exercice;
+import com.giogio.gains.classes.Table;
 import com.giogio.gains.dao.ExerciceDao;
+import com.giogio.gains.dao.TableDao;
 
 import javax.swing.SwingConstants;
 import javax.swing.ImageIcon;
@@ -138,6 +140,14 @@ public class MainPanel extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				chargeTable();
 				menuLabel.setText(ResourceBundle.getBundle("i18n").getString("tableTitle"));
+				ArrayList<Table> array = TableDao.read();
+				Table[] wA = new Table[array.size()];
+				int count = 0;
+				for (Table table : array) {
+					wA[count] = table;
+					count++;
+				}
+				list_1.setListData(wA);
 			}
 		});
 		btnTablas.setContentAreaFilled(false);
@@ -304,6 +314,14 @@ public class MainPanel extends JPanel {
 			count++;
 		}
 		list.setListData(wA);
+		ArrayList<Table> array1 = TableDao.read();
+		Table[] wA1 = new Table[array1.size()];
+		int count1 = 0;
+		for (Table table : array1) {
+			wA1[count1] = table;
+			count1++;
+		}
+		list_1.setListData(wA1);
 
 	}
 	
@@ -311,6 +329,7 @@ public class MainPanel extends JPanel {
 		layeredPane.removeAll();
 		layeredPane.add(tablePanel);
 		menuLabel.setText(ResourceBundle.getBundle("i18n").getString("tableTitle"));
+		list_1.removeAll();
 	}
 
 	public void chargeWorkout() {

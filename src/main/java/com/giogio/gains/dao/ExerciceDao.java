@@ -14,7 +14,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import com.giogio.gains.classes.Exercice;
-import com.giogio.gains.naming.TableNaming;
+import com.giogio.gains.naming.BdNaming;
 import com.giogio.gains.naming.UserNaming;
 import com.giogio.gains.naming.WorkoutNaming;
 
@@ -44,7 +44,7 @@ public class ExerciceDao {
         if (workout != null) {
             Connection conexion = conectar();
 
-            String sql = "INSERT INTO " + TableNaming.WORKOUT  + " (" + WorkoutNaming.ID + ", " + WorkoutNaming.NAME + ", " + WorkoutNaming.DESCRIPTION + ", " + WorkoutNaming.VIDEO +  " ) "
+            String sql = "INSERT INTO " + BdNaming.WORKOUT  + " (" + WorkoutNaming.ID + ", " + WorkoutNaming.NAME + ", " + WorkoutNaming.DESCRIPTION + ", " + WorkoutNaming.VIDEO +  " ) "
                     + "             VALUES ( ?,   ?,   ?,   ? )";
 
             try {
@@ -66,7 +66,7 @@ public class ExerciceDao {
     public static ArrayList<Exercice> read() {
         Exercice workout = null;
         ArrayList<Exercice> array = new ArrayList();
-        String sql = "SELECT " + WorkoutNaming.ID + ", " + WorkoutNaming.NAME + ", " +  WorkoutNaming.DESCRIPTION + ", " + WorkoutNaming.VIDEO +  " FROM " + TableNaming.WORKOUT;
+        String sql = "SELECT " + WorkoutNaming.ID + ", " + WorkoutNaming.NAME + ", " +  WorkoutNaming.DESCRIPTION + ", " + WorkoutNaming.VIDEO +  " FROM " + BdNaming.WORKOUT;
         try {
             Connection conexion = conectar();
 
@@ -89,28 +89,9 @@ public class ExerciceDao {
         return array;
     }
 
-    public static boolean update(Exercice workout) {
-        if (workout != null) {
-            String sql = "UPDATE "+ TableNaming.WORKOUT  + " SET " +  WorkoutNaming.ID + "=?, " + WorkoutNaming.NAME + "=?, " + WorkoutNaming.DESCRIPTION + "=?, " + WorkoutNaming.VIDEO + "=?";
-            try {
-                Connection conexion = conectar();
-                PreparedStatement sentencia = conexion.prepareStatement(sql);
-
-                sentencia.setInt(1, workout.getId());
-                sentencia.setString(2, workout.getName());
-                sentencia.setString(3, workout.getDescription());
-                sentencia.setString(4, workout.getVideo());
-                sentencia.executeUpdate();
-                conexion.close();
-            } catch (SQLException ex) {
-                return false;
-            }
-        }
-        return true;
-    }
 
     public static boolean delete(Exercice workout) {
-        String sql = "DELETE FROM " + TableNaming.WORKOUT  + " WHERE " + WorkoutNaming.ID + "=?";
+        String sql = "DELETE FROM " + BdNaming.WORKOUT  + " WHERE " + WorkoutNaming.ID + "=?";
         try {
             Connection conexion = conectar();
             PreparedStatement sentencia = conexion.prepareStatement(sql);
