@@ -40,6 +40,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JComboBox;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.JTextArea;
 
@@ -61,7 +62,6 @@ public class MainPanel extends JPanel {
 	private JButton btnTablas;
 	private JButton btnEntreno;
 	private JButton btnEstadisticas;
-	private JLabel lblNewLabel_1;
 	private JLabel lblNewLabel_2;
 	private JLabel lblNewLabel_3;
 	private JList list;
@@ -74,10 +74,13 @@ public class MainPanel extends JPanel {
 	private JLabel videoRequest;
 	private JPanel panel_6;
 	private JLabel lblNewLabel;
+	private JList list_1;
+	private JButton btnNewButton_2;
+	private JButton btnNewButton_3;
 	/**
 	 * Create the panel.
 	 */
-	public MainPanel(final MainFrame frame) {
+	public MainPanel() {
 		setBounds(new Rectangle(0, 0, 1082, 677));
 		setLayout(new BorderLayout(0, 0));
 		setLayout(new BorderLayout(0, 0));
@@ -182,9 +185,14 @@ public class MainPanel extends JPanel {
 		btnNewButton_1 = new JButton(ResourceBundle.getBundle("i18n").getString("showButton"));
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Exercice workout = (Exercice) list.getSelectedValue();
-				nameRequest.setText(ResourceBundle.getBundle("i18n").getString(workout.getName()));
-				descriptionRequest.setText(ResourceBundle.getBundle("i18n").getString(workout.getDescription()));
+				if (list.isSelectionEmpty()) {
+					JOptionPane.showMessageDialog(null,
+							ResourceBundle.getBundle("i18n").getString("exerciceInfoSelected"));
+				} else {
+					Exercice workout = (Exercice) list.getSelectedValue();
+					nameRequest.setText(ResourceBundle.getBundle("i18n").getString(workout.getName()));
+					descriptionRequest.setText(ResourceBundle.getBundle("i18n").getString(workout.getDescription()));
+				}
 			}
 		});
 		btnNewButton_1.setBounds(10, 589, 329, 33);
@@ -192,7 +200,7 @@ public class MainPanel extends JPanel {
 		
 		panel_5 = new JPanel();
 		panel_5.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
-		panel_5.setBounds(349, 30, 693, 548);
+		panel_5.setBounds(349, 30, 693, 592);
 		exercicePanel.add(panel_5);
 		panel_5.setLayout(null);
 		
@@ -223,7 +231,7 @@ public class MainPanel extends JPanel {
 		
 		panel_6 = new JPanel();
 		panel_6.setBackground(Color.GRAY);
-		panel_6.setBounds(47, 252, 602, 285);
+		panel_6.setBounds(47, 252, 602, 329);
 		panel_5.add(panel_6);
 		
 		lblNewLabel = new JLabel("La sección video está actualmente en desarrollo");
@@ -231,9 +239,48 @@ public class MainPanel extends JPanel {
 		
 		tablePanel = new JPanel();
 		layeredPane.add(tablePanel, "name_610791228577600");
+		tablePanel.setLayout(null);
 		
-		lblNewLabel_1 = new JLabel("panel de tablas");
-		tablePanel.add(lblNewLabel_1);
+		list_1 = new JList();
+		list_1.setToolTipText("");
+		list_1.setBounds(10, 30, 329, 548);
+		tablePanel.add(list_1);
+		
+		btnNewButton_2 = new JButton(ResourceBundle.getBundle("i18n").getString("newButton")); 
+		btnNewButton_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		btnNewButton_2.setBounds(10, 589, 165, 33);
+		tablePanel.add(btnNewButton_2);
+		
+		btnNewButton_3 = new JButton(ResourceBundle.getBundle("i18n").getString("showButton"));
+		btnNewButton_3.setBounds(174, 589, 165, 33);
+		tablePanel.add(btnNewButton_3);
+		
+		JLayeredPane layeredPane_1 = new JLayeredPane();
+		layeredPane_1.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
+		layeredPane_1.setBounds(349, 30, 693, 592);
+		tablePanel.add(layeredPane_1);
+		layeredPane_1.setLayout(new CardLayout(0, 0));
+		
+		JPanel blankPanel = new JPanel();
+		layeredPane_1.add(blankPanel, "name_695991436920600");
+		
+		JLabel lblNewLabel_5 = new JLabel("blank panel");
+		blankPanel.add(lblNewLabel_5);
+		
+		JPanel newTablePanel = new JPanel();
+		layeredPane_1.add(newTablePanel, "name_695993978379300");
+		
+		JLabel lblNewLabel_1 = new JLabel("new panel");
+		newTablePanel.add(lblNewLabel_1);
+		
+		JPanel showTable = new JPanel();
+		layeredPane_1.add(showTable, "name_695997676193000");
+		
+		JLabel lblNewLabel_4 = new JLabel("modify panel");
+		showTable.add(lblNewLabel_4);
 		
 		workoutPanel = new JPanel();
 		layeredPane.add(workoutPanel, "name_610793239884300");

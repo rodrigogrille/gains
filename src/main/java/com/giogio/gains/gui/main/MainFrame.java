@@ -11,7 +11,9 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JMenu;
 import java.awt.event.ActionListener;
+import java.util.ResourceBundle;
 import java.awt.event.ActionEvent;
+import java.awt.Font;
 
 public class MainFrame extends JFrame {
 
@@ -28,10 +30,11 @@ public class MainFrame extends JFrame {
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
 		
-		JMenu mnNewMenu = new JMenu("Mover");
+		JMenu mnNewMenu = new JMenu(ResourceBundle.getBundle("i18n").getString("moveMenuButton"));
+		mnNewMenu.setFont(new Font("Segoe UI", Font.BOLD, 13));
 		menuBar.add(mnNewMenu);
 		
-		JMenuItem mntmNewMenuItem = new JMenuItem("Main");
+		JMenuItem mntmNewMenuItem = new JMenuItem(ResourceBundle.getBundle("i18n").getString("mainTitle"));
 		mntmNewMenuItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				mainPanel.chargeMain();
@@ -39,7 +42,7 @@ public class MainFrame extends JFrame {
 		});
 		mnNewMenu.add(mntmNewMenuItem);
 		
-		JMenuItem mntmNewMenuItem_1 = new JMenuItem("Ejercicios");
+		JMenuItem mntmNewMenuItem_1 = new JMenuItem(ResourceBundle.getBundle("i18n").getString("exerciceTitle"));
 		mntmNewMenuItem_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				mainPanel.chargeExercice();
@@ -47,7 +50,7 @@ public class MainFrame extends JFrame {
 		});
 		mnNewMenu.add(mntmNewMenuItem_1);
 		
-		JMenuItem mntmNewMenuItem_2 = new JMenuItem("Tablas");
+		JMenuItem mntmNewMenuItem_2 = new JMenuItem(ResourceBundle.getBundle("i18n").getString("tableTitle"));
 		mntmNewMenuItem_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				mainPanel.chargeTable();
@@ -55,7 +58,7 @@ public class MainFrame extends JFrame {
 		});
 		mnNewMenu.add(mntmNewMenuItem_2);
 		
-		JMenuItem mntmNewMenuItem_3 = new JMenuItem("Entreno");
+		JMenuItem mntmNewMenuItem_3 = new JMenuItem(ResourceBundle.getBundle("i18n").getString("workoutTitle"));
 		mntmNewMenuItem_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				mainPanel.chargeWorkout();
@@ -63,7 +66,7 @@ public class MainFrame extends JFrame {
 		});
 		mnNewMenu.add(mntmNewMenuItem_3);
 		
-		JMenuItem mntmNewMenuItem_4 = new JMenuItem("Estadísticas");
+		JMenuItem mntmNewMenuItem_4 = new JMenuItem(ResourceBundle.getBundle("i18n").getString("statisticsTitle"));
 		mntmNewMenuItem_4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				mainPanel.chargeStatistics();
@@ -74,7 +77,7 @@ public class MainFrame extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
-		mainPanel = new MainPanel(this);
+		mainPanel = new MainPanel();
 		chargePanel(mainPanel);
 	}
 
