@@ -6,6 +6,9 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import com.giogio.gains.classes.User;
+
 import java.awt.Rectangle;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
@@ -19,11 +22,13 @@ public class MainFrame extends JFrame {
 
 	private JPanel contentPane;
 	private MainPanel mainPanel;
+	private User currentUser;
 
 	/**
 	 * Create the frame.
 	 */
-	public MainFrame() {
+	public MainFrame(User user) {
+		currentUser = user;
 		setBounds(new Rectangle(400, 200, 1112, 750));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(400, 200, 1112, 750);

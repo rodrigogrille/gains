@@ -11,7 +11,7 @@ import com.giogio.gains.classes.PasswordEncrypt;
 import com.giogio.gains.classes.User;
 import com.giogio.gains.classes.Exercice;
 import com.giogio.gains.dao.UserDao;
-import com.giogio.gains.dao.exerciceDao;
+import com.giogio.gains.dao.ExerciceDao;
 
 /**
  *
@@ -22,7 +22,7 @@ public class Main {
         for (User user : UserDao.read()) {
         	System.out.println(user.toString());
         }
-        for (Exercice workout : exerciceDao.read()) {
+        for (Exercice workout : ExerciceDao.read()) {
         	System.out.println(workout.toString());
         }
     }

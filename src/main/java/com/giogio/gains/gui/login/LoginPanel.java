@@ -20,6 +20,7 @@ import javax.swing.SwingConstants;
 
 import com.giogio.gains.classes.CompareStrings;
 import com.giogio.gains.classes.Parser;
+import com.giogio.gains.classes.User;
 import com.giogio.gains.dao.UserDao;
 import com.giogio.gains.gui.custom.RoundedBorder;
 import com.giogio.gains.gui.main.MainFrame;
@@ -76,19 +77,24 @@ public class LoginPanel extends LoginFather {
 				if (loginUserField.getText().equals(ResourceBundle.getBundle("i18n").getString("loginUserField"))
 						|| loginPasswordField.getText()
 								.equals(ResourceBundle.getBundle("i18n").getString("loginPasswordField"))
-						|| loginUserField.getText().equals("")
-						|| loginPasswordField.getText()
-								.equals("")) {
+						|| loginUserField.getText().equals("") || loginPasswordField.getText().equals("")) {
 					JOptionPane.showMessageDialog(null,
 							ResourceBundle.getBundle("i18n").getString("logInInfoMessageDefault"));
 				} else {
-					if (CompareStrings.compareUserNamePass(UserDao.read(), loginUserField.getText(),
-							Parser.getPass(loginPasswordField.getPassword()))) {
-						MainFrame mainFrame = new MainFrame();
-						frame.setVisible(false);
-						mainFrame.setVisible(true);
-						
-					} else {
+					try {
+						User user = UserDao.readUserById(loginUserField.getText());
+						if (CompareStrings.compareUserPass(user, Parser.getPass(loginPasswordField.getPassword()))) {
+							User currentUser = new User(user.getId(), user.getName(), user.getEmail(),
+									user.getBorn_date(), user.getRole_id());
+							MainFrame mainFrame = new MainFrame(currentUser);
+							frame.setVisible(false);
+							mainFrame.setVisible(true);
+
+						} else {
+							JOptionPane.showMessageDialog(null,
+									ResourceBundle.getBundle("i18n").getString("logInInfoMessageLogin"));
+						}
+					} catch (Exception e2) {
 						JOptionPane.showMessageDialog(null,
 								ResourceBundle.getBundle("i18n").getString("logInInfoMessageLogin"));
 					}

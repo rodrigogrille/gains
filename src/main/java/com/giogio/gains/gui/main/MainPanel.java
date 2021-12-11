@@ -28,7 +28,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.border.MatteBorder;
 
 import com.giogio.gains.classes.Exercice;
-import com.giogio.gains.dao.exerciceDao;
+import com.giogio.gains.dao.ExerciceDao;
 
 import javax.swing.SwingConstants;
 import javax.swing.ImageIcon;
@@ -77,6 +77,7 @@ public class MainPanel extends JPanel {
 	private JList list_1;
 	private JButton btnNewButton_2;
 	private JButton btnNewButton_3;
+	private JTable table;
 	/**
 	 * Create the panel.
 	 */
@@ -114,7 +115,7 @@ public class MainPanel extends JPanel {
 				menuLabel.setText(ResourceBundle.getBundle("i18n").getString("exerciceTitle"));
 				nameRequest.setText("");
 				descriptionRequest.setText("");
-				ArrayList<Exercice> array = exerciceDao.read();
+				ArrayList<Exercice> array = ExerciceDao.read();
 				Exercice[] wA = new Exercice[array.size()];
 				int count = 0;
 				for (Exercice workout : array) {
@@ -278,9 +279,11 @@ public class MainPanel extends JPanel {
 		
 		JPanel showTable = new JPanel();
 		layeredPane_1.add(showTable, "name_695997676193000");
+		showTable.setLayout(null);
 		
-		JLabel lblNewLabel_4 = new JLabel("modify panel");
-		showTable.add(lblNewLabel_4);
+		table = new JTable();
+		table.setBounds(10, 11, 669, 566);
+		showTable.add(table);
 		
 		workoutPanel = new JPanel();
 		layeredPane.add(workoutPanel, "name_610793239884300");
@@ -291,9 +294,9 @@ public class MainPanel extends JPanel {
 		statisticsPanel = new JPanel();
 		layeredPane.add(statisticsPanel, "name_610795343312600");
 		
-		lblNewLabel_3 = new JLabel("panel de estadisticas");
+		lblNewLabel_3 = new JLabel("Este panel esta actualmente en desarrollo");
 		statisticsPanel.add(lblNewLabel_3);
-		ArrayList<Exercice> array = exerciceDao.read();
+		ArrayList<Exercice> array = ExerciceDao.read();
 		Exercice[] wA = new Exercice[array.size()];
 		int count = 0;
 		for (Exercice workout : array) {

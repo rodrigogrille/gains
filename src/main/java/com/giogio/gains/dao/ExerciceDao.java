@@ -22,7 +22,7 @@ import com.giogio.gains.naming.WorkoutNaming;
  *
  * @author rgrille
  */
-public class exerciceDao {
+public class ExerciceDao {
 	private static Connection conectar() {
         Connection con = null;
 

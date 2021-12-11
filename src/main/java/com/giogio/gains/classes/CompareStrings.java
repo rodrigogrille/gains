@@ -50,4 +50,12 @@ public class CompareStrings {
 		}
 		return false;
 	}
+	
+	public static Boolean compareUserPass(User user, String pass) {
+		if (user.getPasswd().equals(PasswordEncrypt.encryptPassword(pass))) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 }
