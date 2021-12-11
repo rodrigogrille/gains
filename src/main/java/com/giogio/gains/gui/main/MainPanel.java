@@ -10,6 +10,8 @@ import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import javax.swing.JLabel;
 import java.awt.event.MouseMotionAdapter;
+import java.util.ArrayList;
+import java.util.ResourceBundle;
 import java.awt.event.MouseEvent;
 import java.awt.SystemColor;
 import java.awt.Color;
@@ -24,6 +26,10 @@ import javax.swing.border.EtchedBorder;
 import javax.swing.border.LineBorder;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.MatteBorder;
+
+import com.giogio.gains.classes.Workout;
+import com.giogio.gains.dao.WorkoutDao;
+
 import javax.swing.SwingConstants;
 import javax.swing.ImageIcon;
 import javax.swing.JTextPane;
@@ -32,6 +38,10 @@ import javax.swing.JLayeredPane;
 import java.awt.CardLayout;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JComboBox;
+import javax.swing.JList;
+import javax.swing.JTable;
+import javax.swing.JTextArea;
 
 public class MainPanel extends JPanel {
 	private JPanel panel;
@@ -51,10 +61,19 @@ public class MainPanel extends JPanel {
 	private JButton btnTablas;
 	private JButton btnEntreno;
 	private JButton btnEstadisticas;
-	private JLabel lblNewLabel;
 	private JLabel lblNewLabel_1;
 	private JLabel lblNewLabel_2;
 	private JLabel lblNewLabel_3;
+	private JList list;
+	private JButton btnNewButton_1;
+	private JPanel panel_5;
+	private JLabel nameLabel;
+	private JLabel nameRequest;
+	private JLabel descriptionLabel;
+	private JTextArea descriptionRequest;
+	private JLabel videoRequest;
+	private JPanel panel_6;
+	private JLabel lblNewLabel;
 	/**
 	 * Create the panel.
 	 */
@@ -66,7 +85,7 @@ public class MainPanel extends JPanel {
 		panel = new JPanel();
 		add(panel, BorderLayout.NORTH);
 		
-		menuLabel = new JLabel("Menú");
+		menuLabel = new JLabel(ResourceBundle.getBundle("i18n").getString("mainTitle"));
 		menuLabel.setFont(new Font("Tahoma", Font.BOLD, 26));
 		panel.add(menuLabel);
 		
@@ -85,11 +104,21 @@ public class MainPanel extends JPanel {
 		mainPanel.add(panel_1);
 		panel_1.setLayout(null);
 		
-		btnNewButton = new JButton("Ejercicios");
+		btnNewButton = new JButton(ResourceBundle.getBundle("i18n").getString("exerciceTitle"));
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				chargeExercice();
-				menuLabel.setText("Ejercicios");
+				menuLabel.setText(ResourceBundle.getBundle("i18n").getString("exerciceTitle"));
+				nameRequest.setText("");
+				descriptionRequest.setText("");
+				ArrayList<Workout> array = WorkoutDao.read();
+				Workout[] wA = new Workout[array.size()];
+				int count = 0;
+				for (Workout workout : array) {
+					wA[count] = workout;
+					count++;
+				}
+				list.setListData(wA);
 			}
 		});
 		btnNewButton.setContentAreaFilled(false);
@@ -100,11 +129,11 @@ public class MainPanel extends JPanel {
 		mainPanel.add(panel_2);
 		panel_2.setLayout(null);
 		
-		btnTablas = new JButton("Tablas");
+		btnTablas = new JButton(ResourceBundle.getBundle("i18n").getString("tableTitle"));
 		btnTablas.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				chargeTable();
-				menuLabel.setText("Tablas");
+				menuLabel.setText(ResourceBundle.getBundle("i18n").getString("tableTitle"));
 			}
 		});
 		btnTablas.setContentAreaFilled(false);
@@ -115,11 +144,11 @@ public class MainPanel extends JPanel {
 		mainPanel.add(panel_3);
 		panel_3.setLayout(null);
 		
-		btnEntreno = new JButton("Entreno");
+		btnEntreno = new JButton(ResourceBundle.getBundle("i18n").getString("workoutTitle"));
 		btnEntreno.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				chargeWorkout();
-				menuLabel.setText("Entreno");
+				menuLabel.setText(ResourceBundle.getBundle("i18n").getString("workoutTitle"));
 			}
 		});
 		btnEntreno.setContentAreaFilled(false);
@@ -130,11 +159,11 @@ public class MainPanel extends JPanel {
 		mainPanel.add(panel_4);
 		panel_4.setLayout(null);
 		
-		btnEstadisticas = new JButton("Estadísticas");
+		btnEstadisticas = new JButton(ResourceBundle.getBundle("i18n").getString("statisticsTitle"));
 		btnEstadisticas.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				chargeStatistics();
-				menuLabel.setText("Estadísticas");
+				menuLabel.setText(ResourceBundle.getBundle("i18n").getString("statisticsTitle"));
 			}
 		});
 		btnEstadisticas.setContentAreaFilled(false);
@@ -143,9 +172,62 @@ public class MainPanel extends JPanel {
 		
 		exercicePanel = new JPanel();
 		layeredPane.add(exercicePanel, "name_610788982175000");
+		exercicePanel.setLayout(null);
 		
-		lblNewLabel = new JLabel("Panel de ejercicio");
-		exercicePanel.add(lblNewLabel);
+		list = new JList();
+		list.setToolTipText("");
+		list.setBounds(10, 30, 329, 548);
+		exercicePanel.add(list);
+		
+		btnNewButton_1 = new JButton(ResourceBundle.getBundle("i18n").getString("showButton"));
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Workout workout = (Workout) list.getSelectedValue();
+				nameRequest.setText(ResourceBundle.getBundle("i18n").getString(workout.getName()));
+				descriptionRequest.setText(ResourceBundle.getBundle("i18n").getString(workout.getDescription()));
+			}
+		});
+		btnNewButton_1.setBounds(10, 589, 329, 33);
+		exercicePanel.add(btnNewButton_1);
+		
+		panel_5 = new JPanel();
+		panel_5.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
+		panel_5.setBounds(349, 30, 693, 548);
+		exercicePanel.add(panel_5);
+		panel_5.setLayout(null);
+		
+		nameLabel = new JLabel(ResourceBundle.getBundle("i18n").getString("nameLabel"));
+		nameLabel.setFont(new Font("Tahoma", Font.BOLD, 20));
+		nameLabel.setBounds(47, 11, 95, 35);
+		panel_5.add(nameLabel);
+		
+		nameRequest = new JLabel("");
+		nameRequest.setFont(new Font("Tahoma", Font.BOLD, 20));
+		nameRequest.setBounds(152, 11, 500, 35);
+		panel_5.add(nameRequest);
+		
+		descriptionLabel = new JLabel(ResourceBundle.getBundle("i18n").getString("descriptionLabel"));
+		descriptionLabel.setFont(new Font("Tahoma", Font.BOLD, 20));
+		descriptionLabel.setBounds(47, 57, 225, 35);
+		panel_5.add(descriptionLabel);
+		
+		descriptionRequest = new JTextArea();
+		descriptionRequest.setEditable(false);
+		descriptionRequest.setBounds(47, 103, 602, 92);
+		panel_5.add(descriptionRequest);
+		
+		videoRequest = new JLabel(ResourceBundle.getBundle("i18n").getString("videoLabel"));
+		videoRequest.setFont(new Font("Tahoma", Font.BOLD, 20));
+		videoRequest.setBounds(47, 206, 225, 35);
+		panel_5.add(videoRequest);
+		
+		panel_6 = new JPanel();
+		panel_6.setBackground(Color.GRAY);
+		panel_6.setBounds(47, 252, 602, 285);
+		panel_5.add(panel_6);
+		
+		lblNewLabel = new JLabel("La sección video está actualmente en desarrollo");
+		panel_6.add(lblNewLabel);
 		
 		tablePanel = new JPanel();
 		layeredPane.add(tablePanel, "name_610791228577600");
@@ -164,36 +246,44 @@ public class MainPanel extends JPanel {
 		
 		lblNewLabel_3 = new JLabel("panel de estadisticas");
 		statisticsPanel.add(lblNewLabel_3);
+		ArrayList<Workout> array = WorkoutDao.read();
+		Workout[] wA = new Workout[array.size()];
+		int count = 0;
+		for (Workout workout : array) {
+			wA[count] = workout;
+			count++;
+		}
+		list.setListData(wA);
 
 	}
 	
 	public void chargeTable() {
 		layeredPane.removeAll();
 		layeredPane.add(tablePanel);
-		menuLabel.setText("Tablas");
+		menuLabel.setText(ResourceBundle.getBundle("i18n").getString("tableTitle"));
 	}
 
 	public void chargeWorkout() {
 		layeredPane.removeAll();
 		layeredPane.add(workoutPanel);
-		menuLabel.setText("Entreno");
+		menuLabel.setText(ResourceBundle.getBundle("i18n").getString("workoutTitle"));
 	}
 	
 	public void chargeExercice() {
 		layeredPane.removeAll();
 		layeredPane.add(exercicePanel);
-		menuLabel.setText("Ejercicios");
+		menuLabel.setText(ResourceBundle.getBundle("i18n").getString("exerciceTitle"));
 	}
 	
 	public void chargeStatistics() {
 		layeredPane.removeAll();
 		layeredPane.add(statisticsPanel);
-		menuLabel.setText("Estadísticas");
+		menuLabel.setText(ResourceBundle.getBundle("i18n").getString("statisticsTitle"));
 	}
 	
 	public void chargeMain() {
 		layeredPane.removeAll();
 		layeredPane.add(mainPanel);
-		menuLabel.setText("Main");
+		menuLabel.setText(ResourceBundle.getBundle("i18n").getString("mainTitle"));
 	}
 }

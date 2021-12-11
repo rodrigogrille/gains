@@ -1,5 +1,7 @@
 package com.giogio.gains.classes;
 
+import java.util.ResourceBundle;
+
 public class Workout {
 	int id;
 	String name;
@@ -47,7 +49,7 @@ public class Workout {
 
 	@Override
 	public String toString() {
-		return "Workout [id=" + id + ", name=" + name + ", description=" + description + ", video=" + video + "]";
+		return ResourceBundle.getBundle("i18n").getString(name);
 	}
 
 }
