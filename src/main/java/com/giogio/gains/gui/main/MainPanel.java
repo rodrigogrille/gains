@@ -27,8 +27,8 @@ import javax.swing.border.LineBorder;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.MatteBorder;
 
-import com.giogio.gains.classes.Workout;
-import com.giogio.gains.dao.WorkoutDao;
+import com.giogio.gains.classes.Exercice;
+import com.giogio.gains.dao.exerciceDao;
 
 import javax.swing.SwingConstants;
 import javax.swing.ImageIcon;
@@ -111,10 +111,10 @@ public class MainPanel extends JPanel {
 				menuLabel.setText(ResourceBundle.getBundle("i18n").getString("exerciceTitle"));
 				nameRequest.setText("");
 				descriptionRequest.setText("");
-				ArrayList<Workout> array = WorkoutDao.read();
-				Workout[] wA = new Workout[array.size()];
+				ArrayList<Exercice> array = exerciceDao.read();
+				Exercice[] wA = new Exercice[array.size()];
 				int count = 0;
-				for (Workout workout : array) {
+				for (Exercice workout : array) {
 					wA[count] = workout;
 					count++;
 				}
@@ -182,7 +182,7 @@ public class MainPanel extends JPanel {
 		btnNewButton_1 = new JButton(ResourceBundle.getBundle("i18n").getString("showButton"));
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Workout workout = (Workout) list.getSelectedValue();
+				Exercice workout = (Exercice) list.getSelectedValue();
 				nameRequest.setText(ResourceBundle.getBundle("i18n").getString(workout.getName()));
 				descriptionRequest.setText(ResourceBundle.getBundle("i18n").getString(workout.getDescription()));
 			}
@@ -246,10 +246,10 @@ public class MainPanel extends JPanel {
 		
 		lblNewLabel_3 = new JLabel("panel de estadisticas");
 		statisticsPanel.add(lblNewLabel_3);
-		ArrayList<Workout> array = WorkoutDao.read();
-		Workout[] wA = new Workout[array.size()];
+		ArrayList<Exercice> array = exerciceDao.read();
+		Exercice[] wA = new Exercice[array.size()];
 		int count = 0;
-		for (Workout workout : array) {
+		for (Exercice workout : array) {
 			wA[count] = workout;
 			count++;
 		}
@@ -285,5 +285,8 @@ public class MainPanel extends JPanel {
 		layeredPane.removeAll();
 		layeredPane.add(mainPanel);
 		menuLabel.setText(ResourceBundle.getBundle("i18n").getString("mainTitle"));
+		nameRequest.setText("");
+		descriptionRequest.setText("");
+		list.removeAll();
 	}
 }

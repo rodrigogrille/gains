@@ -9,9 +9,9 @@ import java.sql.Date;
 
 import com.giogio.gains.classes.PasswordEncrypt;
 import com.giogio.gains.classes.User;
-import com.giogio.gains.classes.Workout;
+import com.giogio.gains.classes.Exercice;
 import com.giogio.gains.dao.UserDao;
-import com.giogio.gains.dao.WorkoutDao;
+import com.giogio.gains.dao.exerciceDao;
 
 /**
  *
@@ -22,7 +22,7 @@ public class Main {
         for (User user : UserDao.read()) {
         	System.out.println(user.toString());
         }
-        for (Workout workout : WorkoutDao.read()) {
+        for (Exercice workout : exerciceDao.read()) {
         	System.out.println(workout.toString());
         }
     }

@@ -13,7 +13,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import com.giogio.gains.classes.Workout;
+import com.giogio.gains.classes.Exercice;
 import com.giogio.gains.naming.TableNaming;
 import com.giogio.gains.naming.UserNaming;
 import com.giogio.gains.naming.WorkoutNaming;
@@ -22,7 +22,7 @@ import com.giogio.gains.naming.WorkoutNaming;
  *
  * @author rgrille
  */
-public class WorkoutDao {
+public class exerciceDao {
 	private static Connection conectar() {
         Connection con = null;
 
@@ -40,7 +40,7 @@ public class WorkoutDao {
         return con;
     }
 
-    public static boolean create(Workout workout) {
+    public static boolean create(Exercice workout) {
         if (workout != null) {
             Connection conexion = conectar();
 
@@ -63,9 +63,9 @@ public class WorkoutDao {
         return true;
     }
     
-    public static ArrayList<Workout> read() {
-        Workout workout = null;
-        ArrayList<Workout> array = new ArrayList();
+    public static ArrayList<Exercice> read() {
+        Exercice workout = null;
+        ArrayList<Exercice> array = new ArrayList();
         String sql = "SELECT " + WorkoutNaming.ID + ", " + WorkoutNaming.NAME + ", " +  WorkoutNaming.DESCRIPTION + ", " + WorkoutNaming.VIDEO +  " FROM " + TableNaming.WORKOUT;
         try {
             Connection conexion = conectar();
@@ -78,7 +78,7 @@ public class WorkoutDao {
                 String name = rs.getString(WorkoutNaming.NAME);
                 String description = rs.getString(WorkoutNaming.DESCRIPTION);
                 String video = rs.getString(WorkoutNaming.VIDEO);
-                workout = new Workout(id, name, description, video);
+                workout = new Exercice(id, name, description, video);
                 array.add(workout);
             }
             conexion.close();
@@ -89,7 +89,7 @@ public class WorkoutDao {
         return array;
     }
 
-    public static boolean update(Workout workout) {
+    public static boolean update(Exercice workout) {
         if (workout != null) {
             String sql = "UPDATE "+ TableNaming.WORKOUT  + " SET " +  WorkoutNaming.ID + "=?, " + WorkoutNaming.NAME + "=?, " + WorkoutNaming.DESCRIPTION + "=?, " + WorkoutNaming.VIDEO + "=?";
             try {
@@ -109,7 +109,7 @@ public class WorkoutDao {
         return true;
     }
 
-    public static boolean delete(Workout workout) {
+    public static boolean delete(Exercice workout) {
         String sql = "DELETE FROM " + TableNaming.WORKOUT  + " WHERE " + WorkoutNaming.ID + "=?";
         try {
             Connection conexion = conectar();

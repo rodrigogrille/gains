@@ -2,13 +2,13 @@ package com.giogio.gains.classes;
 
 import java.util.ResourceBundle;
 
-public class Workout {
+public class Exercice {
 	int id;
 	String name;
 	String description;
 	String video;
 
-	public Workout(int id, String name, String description, String video) {
+	public Exercice(int id, String name, String description, String video) {
 		this.id = id;
 		this.name = name;
 		this.description = description;
