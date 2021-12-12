@@ -6,9 +6,11 @@
 package com.giogio.gains.naming;
 
 /**
+ * 
+ * @author Rodrigo
  *
- * @author rgrille
  */
+// Nombre de los campos en base de datos
 public class UserNaming {
 
     public static final String ID = "user_id";

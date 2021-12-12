@@ -8,9 +8,14 @@ import java.util.Arrays;
 
 import lombok.extern.log4j.Log4j2;
 
+/**
+ * 
+ * @author Rodrigo
+ *
+ */
 @Log4j2
 public class CompareStrings {
-
+	// Metodo que compara si existe el string que se pasa por parametro dentro del array
 	public static Boolean compareUserName(ArrayList<User> array, String userName) {
 		for (User user : array) {
 			if (user.getId().toUpperCase().equals(userName.toUpperCase())) {
@@ -20,7 +25,7 @@ public class CompareStrings {
 		}
 		return false;
 	}
-
+	// Metodo que compara si los 2 parametros son iguales
 	public static Boolean comparePasswordSignIn(char[] pass1, char[] pass2) {
 		if (Arrays.equals(pass1, pass2)) {
 			return true;
@@ -28,7 +33,7 @@ public class CompareStrings {
 			return false;
 		}
 	}
-
+	// Valida si el formato de la fecha es correcto
 	public static boolean dateValidation(String date) {
 		SimpleDateFormat format = new SimpleDateFormat("yyyy/MM/dd");
 		try {
@@ -39,7 +44,7 @@ public class CompareStrings {
 		}
 		return true;
 	}
-	
+	// Metodo que compara si los parametros coinciden con alguno del array
 	public static Boolean compareUserNamePass(ArrayList<User> array, String userName, String pass) {
 		for (User user : array) {
 			if (user.getId().toUpperCase().equals(userName.toUpperCase())) {
@@ -50,7 +55,7 @@ public class CompareStrings {
 		}
 		return false;
 	}
-	
+	// Metodo que compara si la contraseña coincide con la del usuario
 	public static Boolean compareUserPass(User user, String pass) {
 		if (user.getPasswd().equals(PasswordEncrypt.encryptPassword(pass))) {
 			return true;

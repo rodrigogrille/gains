@@ -29,7 +29,11 @@ import com.giogio.gains.gui.custom.RoundedBorder;
 import com.giogio.gains.gui.main.MainFrame;
 
 import lombok.extern.log4j.Log4j2;
-
+/**
+ * 
+ * @author Rodrigo
+ *
+ */
 @Log4j2
 public class SignInPanel extends LoginFather {
 	private JTextField signInUserField;
@@ -41,10 +45,9 @@ public class SignInPanel extends LoginFather {
 	private JButton SignInLoginButton;
 	private JButton SignInButton;
 	private int count;
-
-	/**
-	 * Create the panel.
-	 */
+	// Los eventos focus gained y mouse moved sirver para que cuando se pasa el raton por encima de los
+	// JButton que no tienen decoracion que se vean como si fuera un Link de HTML que cambien de color
+	// A gris
 	public SignInPanel(final LoginFrame frame) {
 		addMouseMotionListener(new MouseMotionAdapter() {
 			@Override
@@ -113,7 +116,7 @@ public class SignInPanel extends LoginFather {
 		SignInButton = new JButton((String) null);
 		SignInButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-
+				// Comprueba que se escribio algo en los campos del formulario
 				if (signInNameField.getText().equals(ResourceBundle.getBundle("i18n").getString("signInNameField"))
 						|| signInUserField.getText()
 								.equals(ResourceBundle.getBundle("i18n").getString("SignInLoginButton"))
@@ -129,11 +132,16 @@ public class SignInPanel extends LoginFather {
 					JOptionPane.showMessageDialog(null,
 							ResourceBundle.getBundle("i18n").getString("signInInfoMessageDefault"));
 				} else {
+					// Comprueba que la fecha introducida estea en el formato adecuado
 					if (CompareStrings.dateValidation(signInBornDateField.getText())) {
+						// Compara que las 2 contraseñas escritas coincidan
 						if (CompareStrings.comparePasswordSignIn(signInPasswordField.getPassword(),
 								signInRepeatPasswordField.getPassword())) {
+							// Guarda en la variable value la contraseña escrita
 							String value = Parser.getPass(signInPasswordField.getPassword());
+							// Compara si el usuario existe en la base de datos
 							if (!CompareStrings.compareUserName(UserDao.read(), signInUserField.getText())) {
+								// Crea el usuario y muestra un mensaje ademas carga el panel de login
 								User user = new User(signInUserField.getText(), signInNameField.getText(),
 										PasswordEncrypt.encryptPassword(value).toString(), signInEmailField.getText(),
 										Parser.getDate(signInBornDateField.getText()), 2);
@@ -212,6 +220,7 @@ public class SignInPanel extends LoginFather {
 		SignInLoginButton = new JButton(ResourceBundle.getBundle("i18n").getString("SignInLoginButton")); //$NON-NLS-1$ //$NON-NLS-2$
 		SignInLoginButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				// Carga el panel Login
 				LoginPanel loginPanel = new LoginPanel(frame);
 				frame.setContentPane(loginPanel);
 			}

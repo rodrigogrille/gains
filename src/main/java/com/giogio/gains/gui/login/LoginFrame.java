@@ -9,14 +9,17 @@ import javax.swing.border.EmptyBorder;
 
 import java.awt.Rectangle;
 import java.awt.CardLayout;
-
+/**
+ * 
+ * @author Rodrigo
+ *
+ */
+// Frame del login utilizado por el panel del login
+// El flujo del programa empieza aqui
 public class LoginFrame extends JFrame {
 
 	private static JPanel contentPane;
 
-	/**
-	 * Launch the application.
-	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -30,9 +33,6 @@ public class LoginFrame extends JFrame {
 		});
 	}
 
-	/**
-	 * Create the frame.
-	 */
 	public LoginFrame() {
 		setBounds(new Rectangle(0, 0, 409, 599));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

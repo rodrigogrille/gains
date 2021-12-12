@@ -23,6 +23,7 @@ import com.giogio.gains.naming.WorkoutNaming;
  * @author rgrille
  */
 public class TableDao {
+	// Ejecuta la conexion a la base de datos
 	private static Connection conectar() {
 		Connection con = null;
 
@@ -39,7 +40,7 @@ public class TableDao {
 
 		return con;
 	}
-
+	// Ejecuta una INSERT a la base de datos hacia la tabla routine
 	public static boolean create(Table table) {
 		if (table != null) {
 			Connection conexion = conectar();
@@ -61,7 +62,7 @@ public class TableDao {
 		}
 		return true;
 	}
-
+	// Ejecuta una SELECT a la base de datos hacia la tabla routine devolviendo un ArrayList de Objetos Table
 	public static ArrayList<Table> read() {
 		Table table = null;
 		ArrayList<Table> array = new ArrayList();
@@ -84,7 +85,7 @@ public class TableDao {
 
 		return array;
 	}
-
+	// Ejecuta una UPDATE a la base de datos hacia la tabla routine
 	public static boolean update(Table table) {
 		if (table != null) {
 			String sql = "UPDATE " + BdNaming.TABLE + " SET " + TableNaming.TABLE_NAME + "=?, " + TableNaming.USER_ID
@@ -103,7 +104,7 @@ public class TableDao {
 		}
 		return true;
 	}
-
+	// Ejecuta una DELETE a la base de datos hacia la tabla routine
 	public static boolean delete(Table table) {
 		String sql = "DELETE FROM " + BdNaming.TABLE + " WHERE " + TableNaming.TABLE_ID + "=?";
 		try {

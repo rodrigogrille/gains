@@ -1,7 +1,12 @@
 package com.giogio.gains.classes;
 
 import java.util.ResourceBundle;
-
+/**
+ * 
+ * @author Rodrigo
+ *
+ */
+// Objeto que guarda los datos de la tabla Workout de la base de datos
 public class Exercice {
 	int id;
 	String name;
@@ -47,6 +52,7 @@ public class Exercice {
 		this.video = video;
 	}
 
+	// Devuelve la traduccion del ejercicio segun el idioma que estea seleccionado
 	@Override
 	public String toString() {
 		return ResourceBundle.getBundle("i18n").getString(name);

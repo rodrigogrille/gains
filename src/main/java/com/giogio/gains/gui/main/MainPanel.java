@@ -45,7 +45,12 @@ import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.JTextArea;
-
+/**
+ * 
+ * @author Rodrigo
+ *
+ */
+// Main panel para los usuarios con rol user
 public class MainPanel extends JPanel {
 	private JPanel panel;
 	private Component verticalStrut;

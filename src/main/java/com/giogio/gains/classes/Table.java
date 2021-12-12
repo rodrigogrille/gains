@@ -1,5 +1,11 @@
 package com.giogio.gains.classes;
 
+/**
+ * 
+ * @author Rodrigo
+ *
+ */
+//Objeto que guarda los datos de la tabla routine de la base de datos
 public class Table {
 	int id;
 	String name;

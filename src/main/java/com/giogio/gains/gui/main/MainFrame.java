@@ -18,15 +18,18 @@ import java.util.ResourceBundle;
 import java.awt.event.ActionEvent;
 import java.awt.Font;
 
+/**
+ * 
+ * @author Rodrigo
+ *
+ */
+// Main frame para los usuarios con rol user
 public class MainFrame extends JFrame {
 
 	private JPanel contentPane;
 	private MainPanel mainPanel;
 	private User currentUser;
 
-	/**
-	 * Create the frame.
-	 */
 	public MainFrame(User user) {
 		currentUser = user;
 		setBounds(new Rectangle(400, 200, 1112, 750));

@@ -4,6 +4,7 @@ package com.giogio.gains.naming;
  *
  * @author rgrille
  */
+// Nombre de las tablas de la base de datos
 public class BdNaming {
 	
 	public static final String TABLE = "routine";

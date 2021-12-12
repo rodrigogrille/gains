@@ -4,7 +4,12 @@ import java.awt.Component;
 import java.awt.Graphics;
 import java.awt.Insets;
 import javax.swing.border.Border;
-
+/**
+ * 
+ * @author Rodrigo
+ *
+ */
+// Clase que sirve para poner a los botones las esquinas de los redondas
 public class RoundedBorder implements Border {
 
     private int radius;

@@ -14,7 +14,12 @@ import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-
+/**
+ * 
+ * @author Rodrigo
+ *
+ */
+// Main frame para los usuarios con rol admin
 public class MainFrameAdmin extends JFrame {
 
 	private JPanel contentPane;

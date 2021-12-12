@@ -23,6 +23,7 @@ import com.giogio.gains.naming.TableNaming;
  * @author rgrille
  */
 public class RoleDao {
+	// Ejecuta la conexion a la base de datos
 	private static Connection conectar() {
 		Connection con = null;
 
@@ -39,7 +40,7 @@ public class RoleDao {
 
 		return con;
 	}
-
+	// Ejecuta una INSERT a la base de datos hacia la tabla user_role
 	public static boolean create(Role role) {
 		if (role != null) {
 			Connection conexion = conectar();
@@ -60,7 +61,7 @@ public class RoleDao {
 		}
 		return true;
 	}
-
+	// Ejecuta una SELECT a la base de datos hacia la tabla user_role devolviendo un ArrayList de Objetos Role
 	public static ArrayList<Role> read() {
 		Role role = null;
 		ArrayList<Role> array = new ArrayList();
@@ -82,7 +83,7 @@ public class RoleDao {
 
 		return array;
 	}
-
+	// Ejecuta una UPDATE a la base de datos hacia la tabla user_role
 	public static boolean update(Role role) {
 		if (role != null) {
 			String sql = "UPDATE " + BdNaming.USER_ROLE + " SET " + RoleNaming.NAME + "=? " + " WHERE "
@@ -100,7 +101,7 @@ public class RoleDao {
 		}
 		return true;
 	}
-
+	// Ejecuta una DELETE a la base de datos hacia la tabla user_role
 	public static boolean delete(Role role) {
 		String sql = "DELETE FROM " + BdNaming.USER_ROLE + " WHERE " + RoleNaming.ID + "=?";
 		try {

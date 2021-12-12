@@ -25,6 +25,7 @@ import com.giogio.gains.naming.WorkoutNaming;
  * @author rgrille
  */
 public class ExerciceDao {
+	// Ejecuta la conexion a la base de datos
 	private static Connection conectar() {
         Connection con = null;
 
@@ -41,7 +42,7 @@ public class ExerciceDao {
 
         return con;
     }
-
+	// Ejecuta una INSERT a la base de datos hacia la tabla workout
     public static boolean create(Exercice workout) {
         if (workout != null) {
             Connection conexion = conectar();
@@ -64,7 +65,7 @@ public class ExerciceDao {
         }
         return true;
     }
-    
+    // Ejecuta una SELECT a la base de datos hacia la tabla workout devolviendo un ArrayList de Objetos Exercice
     public static ArrayList<Exercice> read() {
         Exercice workout = null;
         ArrayList<Exercice> array = new ArrayList();
@@ -90,8 +91,7 @@ public class ExerciceDao {
 
         return array;
     }
-
-    
+    // Ejecuta una UPDATE a la base de datos hacia la tabla workout
     public static boolean update(Exercice exercice) {
 		if (exercice != null) {
 			String sql = "UPDATE " + BdNaming.WORKOUT + " SET " + WorkoutNaming.NAME + "=?, " + WorkoutNaming.DESCRIPTION
@@ -111,7 +111,7 @@ public class ExerciceDao {
 		}
 		return true;
 	}
-
+    // Ejecuta una DELETE a la base de datos hacia la tabla workout
     public static boolean delete(Exercice workout) {
         String sql = "DELETE FROM " + BdNaming.WORKOUT  + " WHERE " + WorkoutNaming.ID + "=?";
         try {

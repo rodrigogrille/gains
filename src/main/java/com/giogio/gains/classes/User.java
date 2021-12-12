@@ -11,6 +11,7 @@ import java.sql.Date;
  *
  * @author rgrille
  */
+//Objeto que guarda los datos de la tabla user_user de la base de datos
 public class User {
 
 	private String id;

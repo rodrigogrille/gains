@@ -25,7 +25,7 @@ import lombok.extern.log4j.Log4j2;
  */
 @Log4j2
 public class UserDao {
-
+	// Ejecuta la conexion a la base de datos
 	private static Connection conectar() {
 		Connection con = null;
 
@@ -42,7 +42,7 @@ public class UserDao {
 
 		return con;
 	}
-
+	// Ejecuta una INSERT a la base de datos hacia la tabla user_user
 	public static boolean create(User user) {
 		if (user != null) {
 			Connection conexion = conectar();
@@ -68,7 +68,7 @@ public class UserDao {
 		}
 		return true;
 	}
-
+	// Ejecuta una SELECT a la base de datos hacia la tabla user_user devolviendo un ArrayList de Objetos User
 	public static ArrayList<User> read() {
 		User user = null;
 		ArrayList<User> array = new ArrayList();
@@ -98,7 +98,7 @@ public class UserDao {
 
 		return array;
 	}
-
+	// Ejecuta un SELECT a la base de datos hacia la tabla user_user que devuelve un unico registro comprobando por ID
 	public static User readUserById(String userID) {
 		User user = null;
 		String sql = "SELECT * FROM " + BdNaming.USER_USER + " WHERE " + UserNaming.ID + "=?";
@@ -122,7 +122,7 @@ public class UserDao {
 		}
 		return user;
 	}
-
+	// Ejecuta una UPDATE a la base de datos hacia la tabla user_user
 	public static boolean update(User user) {
 		if (user != null) {
 			String sql = "UPDATE " + BdNaming.USER_USER + " SET " + UserNaming.NAME + "=?, " + UserNaming.EMAIL + "=?, "
@@ -144,7 +144,7 @@ public class UserDao {
 		}
 		return true;
 	}
-
+	// Ejecuta una DELETE a la base de datos hacia la tabla user_user
 	public static boolean delete(User user) {
 		String sql = "DELETE FROM " + BdNaming.USER_USER + " WHERE " + UserNaming.ID + "=?";
 		try {

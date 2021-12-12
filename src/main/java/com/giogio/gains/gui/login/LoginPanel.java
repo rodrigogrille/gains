@@ -26,17 +26,21 @@ import com.giogio.gains.gui.custom.RoundedBorder;
 import com.giogio.gains.gui.main.MainFrame;
 import com.giogio.gains.gui.main.MainFrameAdmin;
 import com.giogio.gains.gui.main.MainPanel;
-
+/**
+ * 
+ * @author Rodrigo
+ *
+ */
+// Panel del Login
 public class LoginPanel extends LoginFather {
 	private JTextField loginUserField;
 	private JButton loginForgotButton;
 	private JButton loginSignInButton;
 	private JPasswordField loginPasswordField;
 	private int count;
-
-	/**
-	 * Create the panel.
-	 */
+	// Los eventos focus gained y mouse moved sirver para que cuando se pasa el raton por encima de los
+	// JButton que no tienen decoracion que se vean como si fuera un Link de HTML que cambien de color
+	// A gris
 	public LoginPanel(final LoginFrame frame) {
 		addMouseMotionListener(new MouseMotionAdapter() {
 			@Override
@@ -75,6 +79,7 @@ public class LoginPanel extends LoginFather {
 		JButton loginButton = new JButton(ResourceBundle.getBundle("i18n").getString("loginButton"));
 		loginButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				// Comprueba si se ecribio algo en los campos o si estan vacios
 				if (loginUserField.getText().equals(ResourceBundle.getBundle("i18n").getString("loginUserField"))
 						|| loginPasswordField.getText()
 								.equals(ResourceBundle.getBundle("i18n").getString("loginPasswordField"))
@@ -82,11 +87,14 @@ public class LoginPanel extends LoginFather {
 					JOptionPane.showMessageDialog(null,
 							ResourceBundle.getBundle("i18n").getString("logInInfoMessageDefault"));
 				} else {
+					// Busca si existe el usuario en caso de que no existe devuelve un mensaje
 					try {
 						User user = UserDao.readUserById(loginUserField.getText());
+						// Comprueba si tanto el usuario como la contraseña coinciden
 						if (CompareStrings.compareUserPass(user, Parser.getPass(loginPasswordField.getPassword()))) {
 							User currentUser = new User(user.getId(), user.getName(), user.getEmail(),
 									user.getBorn_date(), user.getRole_id());
+							// Comprueba el rol del usuario en caso de ser admin abre la ventana de admin si no abre la de usuario
 							if (user.getRole_id() == 1) {
 								MainFrameAdmin mainFrame = new MainFrameAdmin(currentUser);
 								frame.setVisible(false);
@@ -142,6 +150,7 @@ public class LoginPanel extends LoginFather {
 		loginSignInButton = new JButton(ResourceBundle.getBundle("i18n").getString("loginSignInButton")); //$NON-NLS-1$ //$NON-NLS-2$
 		loginSignInButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				// Carga el Panel SignIn
 				SignInPanel signInPanel = new SignInPanel(frame);
 				frame.setContentPane(signInPanel);
 			}

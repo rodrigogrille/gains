@@ -36,7 +36,12 @@ import com.giogio.gains.gui.login.LoginPanel;
 import lombok.extern.log4j.Log4j2;
 
 import javax.swing.JTextField;
-
+/**
+ * 
+ * @author Rodrigo
+ *
+ */
+// Main panel para los usuarios con rol admin
 @Log4j2
 public class MainPanelAdmin extends JPanel {
 
@@ -236,6 +241,8 @@ public class MainPanelAdmin extends JPanel {
 
 		showButton = new JButton("Mostrar");
 		showButton.addActionListener(new ActionListener() {
+			// Habilita los botones no mostrar, borrar, modificar y deshabilita los botones mostrar crear
+			// Carga los datos del objeto seleccionado en el formulario
 			public void actionPerformed(ActionEvent e) {
 				if (userList.isSelectionEmpty()) {
 					JOptionPane.showMessageDialog(null, "No hay nada selecionado");
@@ -259,6 +266,7 @@ public class MainPanelAdmin extends JPanel {
 
 		createButton = new JButton("Crear");
 		createButton.addActionListener(new ActionListener() {
+			// Comprueba si los campos estan vacios, valida la fecha, mira si existe el usuario y crea el usuario
 			public void actionPerformed(ActionEvent e) {
 				if (idField.getText().equals("") || nameField.getText().equals("") || emailField.getText().equals("")
 						|| bornField.getText().equals("") || roleField.getText().equals("")) {
@@ -297,6 +305,7 @@ public class MainPanelAdmin extends JPanel {
 
 		modifyButton = new JButton("Modificar");
 		modifyButton.addActionListener(new ActionListener() {
+			// Comprueba si los campos estan vacios, valida la fecha, mira si existe el usuario y modifica el usuario
 			public void actionPerformed(ActionEvent e) {
 				if (idField.getText().equals("") || nameField.getText().equals("") || emailField.getText().equals("")
 						|| bornField.getText().equals("") || roleField.getText().equals("")) {
@@ -332,6 +341,7 @@ public class MainPanelAdmin extends JPanel {
 
 		deleteButton = new JButton("Borrar");
 		deleteButton.addActionListener(new ActionListener() {
+			// Comprueba si los campos estan vacios, valida la fecha, mira si existe el usuario y borra el usuario
 			public void actionPerformed(ActionEvent e) {
 				if (idField.getText().equals("")) {
 					JOptionPane.showMessageDialog(null,
@@ -359,6 +369,7 @@ public class MainPanelAdmin extends JPanel {
 
 		dontShowButton = new JButton("No Mostrar");
 		dontShowButton.addActionListener(new ActionListener() {
+			// Habilita los botones crear y mostrar, deshabilita los botones no mostrar, borrar, modificar
 			public void actionPerformed(ActionEvent e) {
 				showButton.setEnabled(true);
 				dontShowButton.setEnabled(false);
@@ -430,6 +441,8 @@ public class MainPanelAdmin extends JPanel {
 
 		showButton_1 = new JButton("Mostrar");
 		showButton_1.addActionListener(new ActionListener() {
+			// Habilita los botones no mostrar, borrar, modificar y deshabilita los botones mostrar crear
+			// Carga los datos del objeto seleccionado en el formulario
 			public void actionPerformed(ActionEvent e) {
 				if (exerciceList.isSelectionEmpty()) {
 					JOptionPane.showMessageDialog(null, "No hay nada selecionado");
@@ -452,6 +465,7 @@ public class MainPanelAdmin extends JPanel {
 
 		createButton_1 = new JButton("Crear");
 		createButton_1.addActionListener(new ActionListener() {
+			// Comprueba si los campos estan vacios, valida la fecha, mira si existe el usuario y crea el ejercicio
 			public void actionPerformed(ActionEvent e) {
 				if (idFieldExercice.getText().equals("") || nameFieldExercice.getText().equals("")
 						|| descriptionFieldExercice.getText().equals("") || videoFieldExercice.getText().equals("")) {
@@ -481,6 +495,7 @@ public class MainPanelAdmin extends JPanel {
 
 		modifyButton_1 = new JButton("Modificar");
 		modifyButton_1.addActionListener(new ActionListener() {
+			// Comprueba si los campos estan vacios, valida la fecha, mira si existe el usuario y modifica el ejercicio
 			public void actionPerformed(ActionEvent e) {
 				if (idFieldExercice.getText().equals("") || nameFieldExercice.getText().equals("")
 						|| descriptionFieldExercice.getText().equals("") || videoFieldExercice.getText().equals("")) {
@@ -507,6 +522,7 @@ public class MainPanelAdmin extends JPanel {
 
 		deleteButton_1 = new JButton("Borrar");
 		deleteButton_1.addActionListener(new ActionListener() {
+			// Comprueba si los campos estan vacios, valida la fecha, mira si existe el usuario y borra el ejercicio
 			public void actionPerformed(ActionEvent e) {
 				if (idFieldExercice.getText().equals("") || nameFieldExercice.getText().equals("")
 						|| descriptionFieldExercice.getText().equals("") || videoFieldExercice.getText().equals("")) {
@@ -533,6 +549,7 @@ public class MainPanelAdmin extends JPanel {
 
 		dontShowButton_1 = new JButton("No Mostrar");
 		dontShowButton_1.addActionListener(new ActionListener() {
+			// Habilita los botones crear y mostrar, deshabilita los botones no mostrar, borrar, modificar
 			public void actionPerformed(ActionEvent e) {
 				showButton_1.setEnabled(true);
 				dontShowButton_1.setEnabled(false);
@@ -594,6 +611,8 @@ public class MainPanelAdmin extends JPanel {
 
 		showButton_2 = new JButton("Mostrar");
 		showButton_2.addActionListener(new ActionListener() {
+			// Habilita los botones no mostrar, borrar, modificar y deshabilita los botones mostrar crear
+			// Carga los datos del objeto seleccionado en el formulario
 			public void actionPerformed(ActionEvent e) {
 				if (tableList.isSelectionEmpty()) {
 					JOptionPane.showMessageDialog(null, "No hay nada selecionado");
@@ -615,6 +634,7 @@ public class MainPanelAdmin extends JPanel {
 
 		createButton_2 = new JButton("Crear");
 		createButton_2.addActionListener(new ActionListener() {
+			// Comprueba si los campos estan vacios, valida la fecha, mira si existe el usuario y crea la tabla
 			public void actionPerformed(ActionEvent e) {
 				if (idTableField.getText().equals("") || nameTableField.getText().equals("")
 						|| userIdTableField.getText().equals("")) {
@@ -647,6 +667,7 @@ public class MainPanelAdmin extends JPanel {
 
 		modifyButton_2 = new JButton("Modificar");
 		modifyButton_2.addActionListener(new ActionListener() {
+			// Comprueba si los campos estan vacios, valida la fecha, mira si existe el usuario y modifica la tabla
 			public void actionPerformed(ActionEvent e) {
 				if (idTableField.getText().equals("") || nameTableField.getText().equals("")
 						|| userIdTableField.getText().equals("")) {
@@ -680,6 +701,7 @@ public class MainPanelAdmin extends JPanel {
 
 		deleteButton_2 = new JButton("Borrar");
 		deleteButton_2.addActionListener(new ActionListener() {
+			// Comprueba si los campos estan vacios, valida la fecha, mira si existe el usuario y borra la tabla
 			public void actionPerformed(ActionEvent e) {
 				if (idTableField.getText().equals("") || nameTableField.getText().equals("")
 						|| userIdTableField.getText().equals("")) {
@@ -713,6 +735,7 @@ public class MainPanelAdmin extends JPanel {
 
 		dontShowButton_2 = new JButton("No Mostrar");
 		dontShowButton_2.addActionListener(new ActionListener() {
+			// Habilita los botones crear y mostrar, deshabilita los botones no mostrar, borrar, modificar
 			public void actionPerformed(ActionEvent e) {
 				showButton_2.setEnabled(true);
 				dontShowButton_2.setEnabled(false);
@@ -764,6 +787,8 @@ public class MainPanelAdmin extends JPanel {
 
 		showButton_3 = new JButton("Mostrar");
 		showButton_3.addActionListener(new ActionListener() {
+			// Habilita los botones no mostrar, borrar, modificar y deshabilita los botones mostrar crear
+			// Carga los datos del objeto seleccionado en el formulario
 			public void actionPerformed(ActionEvent e) {
 				if (roleList.isSelectionEmpty()) {
 					JOptionPane.showMessageDialog(null, "No hay nada selecionado");
@@ -784,6 +809,7 @@ public class MainPanelAdmin extends JPanel {
 
 		createButton_3 = new JButton("Crear");
 		createButton_3.addActionListener(new ActionListener() {
+			// Comprueba si los campos estan vacios y crea el rol
 			public void actionPerformed(ActionEvent e) {
 				if (idRoleField.getText().equals("") || nameRoleField.getText().equals("")) {
 					JOptionPane.showMessageDialog(null,
@@ -813,6 +839,7 @@ public class MainPanelAdmin extends JPanel {
 
 		modifyButton_3 = new JButton("Modificar");
 		modifyButton_3.addActionListener(new ActionListener() {
+			// Comprueba si los campos estan vacios y modifica el rol
 			public void actionPerformed(ActionEvent e) {
 				if (idRoleField.getText().equals("") || nameRoleField.getText().equals("")) {
 					JOptionPane.showMessageDialog(null,
@@ -843,6 +870,7 @@ public class MainPanelAdmin extends JPanel {
 
 		deleteButton_3 = new JButton("Borrar");
 		deleteButton_3.addActionListener(new ActionListener() {
+			// Comprueba si los campos estan vacios y borra el rol
 			public void actionPerformed(ActionEvent e) {
 				if (idRoleField.getText().equals("") || nameRoleField.getText().equals("")) {
 					JOptionPane.showMessageDialog(null,
@@ -873,6 +901,7 @@ public class MainPanelAdmin extends JPanel {
 
 		dontShowButton_3 = new JButton("No Mostrar");
 		dontShowButton_3.addActionListener(new ActionListener() {
+			// Habilita los botones crear y mostrar, deshabilita los botones no mostrar, borrar, modificar
 			public void actionPerformed(ActionEvent e) {
 				showButton_3.setEnabled(true);
 				dontShowButton_3.setEnabled(false);
@@ -889,41 +918,41 @@ public class MainPanelAdmin extends JPanel {
 		rolePanel.add(dontShowButton_3);
 
 	}
-
+	// Carga el panel USER y cambia el texto del panel superior
 	public void chargeUser() {
 		layeredPane.removeAll();
 		layeredPane.add(userPanel);
 		lblMenu.setText("Usuarios");
 		chargeUserList();
 	}
-
+	// Carga el panel MAIN y cambia el texto del panel superior
 	public void chargeMain() {
 		layeredPane.removeAll();
 		layeredPane.add(mainPanel);
 		lblMenu.setText("Menu");
 	}
-
+	// Carga el panel EXERCICE y cambia el texto del panel superior
 	public void chargeExercice() {
 		layeredPane.removeAll();
 		layeredPane.add(exercicePanel);
 		lblMenu.setText("Ejercicios");
 		chargeExerciceList();
 	}
-
+	// Carga el panel TABLE y cambia el texto del panel superior
 	public void chargeTable() {
 		layeredPane.removeAll();
 		layeredPane.add(tablePanel);
 		lblMenu.setText("Tablas");
 		chargeTableList();
 	}
-
+	// Carga el panel ROLE y cambia el texto del panel superior
 	public void chargeRole() {
 		layeredPane.removeAll();
 		layeredPane.add(rolePanel);
 		lblMenu.setText("Role");
 		chargeRoleList();
 	}
-
+	// Selecciona todos los registros de la tabla user_user y los carga en la JList
 	public void chargeUserList() {
 		ArrayList<User> array = UserDao.read();
 		User[] userAr = new User[array.size()];
@@ -934,7 +963,7 @@ public class MainPanelAdmin extends JPanel {
 		}
 		userList.setListData(userAr);
 	}
-
+	// Selecciona todos los registros de la tabla workout y los carga en la JList
 	public void chargeExerciceList() {
 		ArrayList<Exercice> array = ExerciceDao.read();
 		Exercice[] exerciceAr = new Exercice[array.size()];
@@ -945,7 +974,7 @@ public class MainPanelAdmin extends JPanel {
 		}
 		exerciceList.setListData(exerciceAr);
 	}
-
+	// Selecciona todos los registros de la tabla routine y los carga en la JList
 	public void chargeTableList() {
 		ArrayList<Table> array = TableDao.read();
 		Table[] tableAr = new Table[array.size()];
@@ -956,7 +985,7 @@ public class MainPanelAdmin extends JPanel {
 		}
 		tableList.setListData(tableAr);
 	}
-
+	// Selecciona todos los registros de la tabla user_role y los carga en la JList
 	public void chargeRoleList() {
 		ArrayList<Role> array = RoleDao.read();
 		Role[] roleAr = new Role[array.size()];
