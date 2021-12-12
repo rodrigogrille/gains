@@ -341,7 +341,7 @@ public class MainPanelAdmin extends JPanel {
 
 		deleteButton = new JButton("Borrar");
 		deleteButton.addActionListener(new ActionListener() {
-			// Comprueba si los campos estan vacios, valida la fecha, mira si existe el usuario y borra el usuario
+			// Comprueba si los campos estan vacios y borra el usuario
 			public void actionPerformed(ActionEvent e) {
 				if (idField.getText().equals("")) {
 					JOptionPane.showMessageDialog(null,
@@ -465,7 +465,7 @@ public class MainPanelAdmin extends JPanel {
 
 		createButton_1 = new JButton("Crear");
 		createButton_1.addActionListener(new ActionListener() {
-			// Comprueba si los campos estan vacios, valida la fecha, mira si existe el usuario y crea el ejercicio
+			// Comprueba si los campos estan vacios y crea el ejercicio
 			public void actionPerformed(ActionEvent e) {
 				if (idFieldExercice.getText().equals("") || nameFieldExercice.getText().equals("")
 						|| descriptionFieldExercice.getText().equals("") || videoFieldExercice.getText().equals("")) {
@@ -495,7 +495,7 @@ public class MainPanelAdmin extends JPanel {
 
 		modifyButton_1 = new JButton("Modificar");
 		modifyButton_1.addActionListener(new ActionListener() {
-			// Comprueba si los campos estan vacios, valida la fecha, mira si existe el usuario y modifica el ejercicio
+			// Comprueba si los campos estan vacios y modifica el ejercicio
 			public void actionPerformed(ActionEvent e) {
 				if (idFieldExercice.getText().equals("") || nameFieldExercice.getText().equals("")
 						|| descriptionFieldExercice.getText().equals("") || videoFieldExercice.getText().equals("")) {
@@ -522,7 +522,7 @@ public class MainPanelAdmin extends JPanel {
 
 		deleteButton_1 = new JButton("Borrar");
 		deleteButton_1.addActionListener(new ActionListener() {
-			// Comprueba si los campos estan vacios, valida la fecha, mira si existe el usuario y borra el ejercicio
+			// Comprueba si los campos estan vacios y borra el ejercicio
 			public void actionPerformed(ActionEvent e) {
 				if (idFieldExercice.getText().equals("") || nameFieldExercice.getText().equals("")
 						|| descriptionFieldExercice.getText().equals("") || videoFieldExercice.getText().equals("")) {
@@ -634,7 +634,7 @@ public class MainPanelAdmin extends JPanel {
 
 		createButton_2 = new JButton("Crear");
 		createButton_2.addActionListener(new ActionListener() {
-			// Comprueba si los campos estan vacios, valida la fecha, mira si existe el usuario y crea la tabla
+			// Comprueba si los campos estan vacios y crea la tabla
 			public void actionPerformed(ActionEvent e) {
 				if (idTableField.getText().equals("") || nameTableField.getText().equals("")
 						|| userIdTableField.getText().equals("")) {
@@ -667,7 +667,7 @@ public class MainPanelAdmin extends JPanel {
 
 		modifyButton_2 = new JButton("Modificar");
 		modifyButton_2.addActionListener(new ActionListener() {
-			// Comprueba si los campos estan vacios, valida la fecha, mira si existe el usuario y modifica la tabla
+			// Comprueba si los campos estan vacios y modifica la tabla
 			public void actionPerformed(ActionEvent e) {
 				if (idTableField.getText().equals("") || nameTableField.getText().equals("")
 						|| userIdTableField.getText().equals("")) {
@@ -701,7 +701,7 @@ public class MainPanelAdmin extends JPanel {
 
 		deleteButton_2 = new JButton("Borrar");
 		deleteButton_2.addActionListener(new ActionListener() {
-			// Comprueba si los campos estan vacios, valida la fecha, mira si existe el usuario y borra la tabla
+			// Comprueba si los campos estan vacios y borra la tabla
 			public void actionPerformed(ActionEvent e) {
 				if (idTableField.getText().equals("") || nameTableField.getText().equals("")
 						|| userIdTableField.getText().equals("")) {
