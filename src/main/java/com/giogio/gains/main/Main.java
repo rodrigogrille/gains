@@ -5,9 +5,15 @@
  */
 package com.giogio.gains.main;
 
-import com.giogio.gains.classes.User;
-import com.giogio.gains.dao.UserDao;
 import java.sql.Date;
+
+import com.giogio.gains.classes.PasswordEncrypt;
+import com.giogio.gains.classes.Table;
+import com.giogio.gains.classes.User;
+import com.giogio.gains.classes.Exercice;
+import com.giogio.gains.dao.UserDao;
+import com.giogio.gains.dao.ExerciceDao;
+import com.giogio.gains.dao.TableDao;
 
 /**
  *
@@ -15,8 +21,14 @@ import java.sql.Date;
  */
 public class Main {
     public static void main(String[] args) {
-        Date date = new Date(2020,11,11);
-        User usuario = new User("pepe","pepe","a","a",date,1);
-        UserDao.create(usuario);
+        for (User user : UserDao.read()) {
+        	System.out.println(user.toString());
+        }
+        for (Exercice workout : ExerciceDao.read()) {
+        	System.out.println(workout.toString());
+        }
+        for (Table workout : TableDao.read()) {
+        	System.out.println(workout.toString());
+        }
     }
 }

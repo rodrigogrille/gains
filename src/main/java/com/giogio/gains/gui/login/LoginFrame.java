@@ -1,4 +1,4 @@
-package com.giogio.gains.gui;
+package com.giogio.gains.gui.login;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
@@ -7,15 +7,12 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import com.giogio.gains.gui.login.LoginPanel;
-
+import java.awt.Rectangle;
 import java.awt.CardLayout;
-import java.awt.SystemColor;
 
-public class MainFrame extends JFrame {
+public class LoginFrame extends JFrame {
 
-	private JPanel contentPane;
-	private LoginPanel loginPanel;
+	private static JPanel contentPane;
 
 	/**
 	 * Launch the application.
@@ -24,7 +21,7 @@ public class MainFrame extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					MainFrame frame = new MainFrame();
+					LoginFrame frame = new LoginFrame();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -36,20 +33,18 @@ public class MainFrame extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public MainFrame() {
-		setAutoRequestFocus(false);
-		setResizable(false);
-		getContentPane().setLayout(new CardLayout(0, 0));
+	public LoginFrame() {
+		setBounds(new Rectangle(0, 0, 409, 599));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 905, 654);
+		setBounds(700, 200, 429, 686);
 		contentPane = new JPanel();
-		contentPane.setBackground(SystemColor.window);
+		contentPane.setBounds(new Rectangle(0, 0, 409, 599));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		loginPanel = new LoginPanel();
-		loginPanel.setBounds(240, 8, 409, 599);
-		contentPane.add(loginPanel);
+		LoginPanel loginPanel = new LoginPanel(this);
+		setContentPane(loginPanel);
+		
 	}
 
 }
