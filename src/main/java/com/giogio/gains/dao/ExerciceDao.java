@@ -14,7 +14,9 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import com.giogio.gains.classes.Exercice;
+import com.giogio.gains.classes.Table;
 import com.giogio.gains.naming.BdNaming;
+import com.giogio.gains.naming.TableNaming;
 import com.giogio.gains.naming.UserNaming;
 import com.giogio.gains.naming.WorkoutNaming;
 
@@ -89,6 +91,26 @@ public class ExerciceDao {
         return array;
     }
 
+    
+    public static boolean update(Exercice exercice) {
+		if (exercice != null) {
+			String sql = "UPDATE " + BdNaming.WORKOUT + " SET " + WorkoutNaming.NAME + "=?, " + WorkoutNaming.DESCRIPTION
+					+ "=?, " + WorkoutNaming.VIDEO + "=? " + " WHERE " + WorkoutNaming.ID + "=?";
+			try {
+				Connection conexion = conectar();
+				PreparedStatement sentencia = conexion.prepareStatement(sql);
+				sentencia.setString(1, exercice.getName());
+				sentencia.setString(2, exercice.getDescription());
+				sentencia.setString(3, exercice.getVideo());
+				sentencia.setInt(4, exercice.getId());
+				sentencia.executeUpdate();
+				conexion.close();
+			} catch (SQLException ex) {
+				return false;
+			}
+		}
+		return true;
+	}
 
     public static boolean delete(Exercice workout) {
         String sql = "DELETE FROM " + BdNaming.WORKOUT  + " WHERE " + WorkoutNaming.ID + "=?";

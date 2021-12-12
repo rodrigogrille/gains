@@ -50,6 +50,18 @@ public class MainPanelAdmin extends JPanel {
 	private JButton createButton;
 	private JButton modifyButton;
 	private JButton deleteButton;
+	private JPanel mainPanel;
+	private JTextField idFieldExercice;
+	private JTextField nameFieldExercice;
+	private JTextField descriptionFieldExercice;
+	private JTextField videoFieldExercice;
+	private JButton showButton_1;
+	private JButton dontShowButton_1;
+	private JButton createButton_1;
+	private JButton modifyButton_1;
+	private JButton deleteButton_1;
+	private JList exerciceList;
+	private JPanel exercicePanel;
 
 	/**
 	 * Create the panel.
@@ -72,7 +84,7 @@ public class MainPanelAdmin extends JPanel {
 		add(layeredPane, BorderLayout.CENTER);
 		layeredPane.setLayout(new CardLayout(0, 0));
 
-		JPanel mainPanel = new JPanel();
+		mainPanel = new JPanel();
 		layeredPane.add(mainPanel, "name_716880805494200");
 		mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.X_AXIS));
 
@@ -84,11 +96,10 @@ public class MainPanelAdmin extends JPanel {
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				chargeUser();
-				chargeUserList();
 			}
 		});
 		btnNewButton.setContentAreaFilled(false);
-		btnNewButton.setBounds(0, 0, 216, 627);
+		btnNewButton.setBounds(0, 0, 270, 627);
 		panel_1.add(btnNewButton);
 
 		JPanel panel_2 = new JPanel();
@@ -97,34 +108,30 @@ public class MainPanelAdmin extends JPanel {
 
 		JButton btnRoles = new JButton("Roles");
 		btnRoles.setContentAreaFilled(false);
-		btnRoles.setBounds(0, 0, 216, 627);
+		btnRoles.setBounds(0, 0, 270, 627);
 		panel_2.add(btnRoles);
 
 		JPanel panel_3 = new JPanel();
 		mainPanel.add(panel_3);
 		panel_3.setLayout(null);
 
-		JButton btnPermisos = new JButton("Permisos");
+		JButton btnPermisos = new JButton("Tablas");
 		btnPermisos.setContentAreaFilled(false);
-		btnPermisos.setBounds(0, 0, 216, 627);
+		btnPermisos.setBounds(0, 0, 270, 627);
 		panel_3.add(btnPermisos);
-
-		JPanel panel_4 = new JPanel();
-		mainPanel.add(panel_4);
-		panel_4.setLayout(null);
-
-		JButton btnRolPermiso = new JButton("Rol permiso");
-		btnRolPermiso.setContentAreaFilled(false);
-		btnRolPermiso.setBounds(0, 0, 216, 627);
-		panel_4.add(btnRolPermiso);
 
 		JPanel panel_5 = new JPanel();
 		mainPanel.add(panel_5);
 		panel_5.setLayout(null);
 
 		JButton btnEjercicios = new JButton("Ejercicios");
+		btnEjercicios.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				chargeExercice();
+			}
+		});
 		btnEjercicios.setContentAreaFilled(false);
-		btnEjercicios.setBounds(0, 0, 216, 627);
+		btnEjercicios.setBounds(0, 0, 270, 627);
 		panel_5.add(btnEjercicios);
 
 		userPanel = new JPanel();
@@ -261,7 +268,7 @@ public class MainPanelAdmin extends JPanel {
 							User user = new User(idField.getText(), nameField.getText(), emailField.getText(),
 									Parser.getDate(bornField.getText()), Integer.parseInt(roleField.getText()));
 							UserDao.update(user);
-							JOptionPane.showMessageDialog(null,"Usuario modificado con exito");
+							JOptionPane.showMessageDialog(null, "Usuario modificado con exito");
 							idField.setText("");
 							nameField.setText("");
 							emailField.setText("");
@@ -269,7 +276,7 @@ public class MainPanelAdmin extends JPanel {
 							roleField.setText("");
 							dontShowButton.doClick();
 						} else {
-							JOptionPane.showMessageDialog(null,"El usuario no existe");
+							JOptionPane.showMessageDialog(null, "El usuario no existe");
 						}
 					} else {
 						JOptionPane.showMessageDialog(null,
@@ -294,14 +301,14 @@ public class MainPanelAdmin extends JPanel {
 						User user = new User(idField.getText());
 						try {
 							UserDao.delete(user);
-							JOptionPane.showMessageDialog(null,"Borrado con exito");
+							JOptionPane.showMessageDialog(null, "Borrado con exito");
 							dontShowButton.doClick();
 						} catch (Exception e2) {
-							JOptionPane.showMessageDialog(null,"Error en borrado");
+							JOptionPane.showMessageDialog(null, "Error en borrado");
 						}
-						
+
 					} else {
-						JOptionPane.showMessageDialog(null,"El usuario no existe");
+						JOptionPane.showMessageDialog(null, "El usuario no existe");
 					}
 				}
 			}
@@ -330,12 +337,194 @@ public class MainPanelAdmin extends JPanel {
 		dontShowButton.setBounds(174, 589, 165, 27);
 		userPanel.add(dontShowButton);
 
+		exercicePanel = new JPanel();
+		exercicePanel.setLayout(null);
+		layeredPane.add(exercicePanel, "name_785002518154300");
+
+		exerciceList = new JList();
+		exerciceList.setToolTipText("");
+		exerciceList.setBounds(10, 30, 329, 548);
+		exercicePanel.add(exerciceList);
+
+		JPanel panel_6_1 = new JPanel();
+		panel_6_1.setLayout(null);
+		panel_6_1.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
+		panel_6_1.setBounds(349, 30, 723, 548);
+		exercicePanel.add(panel_6_1);
+
+		idFieldExercice = new JTextField();
+		idFieldExercice.setColumns(10);
+		idFieldExercice.setBounds(247, 84, 466, 32);
+		panel_6_1.add(idFieldExercice);
+
+		nameFieldExercice = new JTextField();
+		nameFieldExercice.setColumns(10);
+		nameFieldExercice.setBounds(247, 200, 466, 32);
+		panel_6_1.add(nameFieldExercice);
+
+		descriptionFieldExercice = new JTextField();
+		descriptionFieldExercice.setColumns(10);
+		descriptionFieldExercice.setBounds(247, 316, 466, 32);
+		panel_6_1.add(descriptionFieldExercice);
+
+		videoFieldExercice = new JTextField();
+		videoFieldExercice.setColumns(10);
+		videoFieldExercice.setBounds(247, 432, 466, 32);
+		panel_6_1.add(videoFieldExercice);
+
+		JLabel lblNewLabel_1 = new JLabel("ID");
+		lblNewLabel_1.setBounds(33, 84, 204, 32);
+		panel_6_1.add(lblNewLabel_1);
+
+		JLabel lblNombre_1 = new JLabel("Nombre");
+		lblNombre_1.setBounds(33, 200, 204, 32);
+		panel_6_1.add(lblNombre_1);
+
+		JLabel lblEmail_1 = new JLabel("Description");
+		lblEmail_1.setBounds(33, 316, 204, 32);
+		panel_6_1.add(lblEmail_1);
+
+		JLabel lblFechaNacimiento_1 = new JLabel("Video link");
+		lblFechaNacimiento_1.setBounds(33, 432, 204, 32);
+		panel_6_1.add(lblFechaNacimiento_1);
+
+		showButton_1 = new JButton("Mostrar");
+		showButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (exerciceList.isSelectionEmpty()) {
+					JOptionPane.showMessageDialog(null, "No hay nada selecionado");
+				} else {
+					Exercice exercice = (Exercice) exerciceList.getSelectedValue();
+					idFieldExercice.setText(Integer.toString(exercice.getId()));
+					nameFieldExercice.setText(exercice.getName());
+					descriptionFieldExercice.setText(exercice.getDescription());
+					videoFieldExercice.setText(exercice.getVideo());
+					showButton_1.setEnabled(false);
+					dontShowButton_1.setEnabled(true);
+					modifyButton_1.setEnabled(true);
+					deleteButton_1.setEnabled(true);
+					createButton_1.setEnabled(false);
+				}
+
+			}
+		});
+		showButton_1.setBounds(10, 589, 165, 27);
+		exercicePanel.add(showButton_1);
+
+		createButton_1 = new JButton("Crear");
+		createButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (idFieldExercice.getText().equals("") || nameFieldExercice.getText().equals("")
+						|| descriptionFieldExercice.getText().equals("") || videoFieldExercice.getText().equals("")) {
+					JOptionPane.showMessageDialog(null,
+							ResourceBundle.getBundle("i18n").getString("signInInfoMessageDefault"));
+				} else {
+					try {
+						Exercice exercice = new Exercice(Integer.parseInt(idFieldExercice.getText()), nameFieldExercice.getText(), descriptionFieldExercice.getText(), videoFieldExercice.getText());
+						ExerciceDao.create(exercice);
+						JOptionPane.showMessageDialog(null, "Ejercicio creado con exito");
+						idFieldExercice.setText("");
+						nameFieldExercice.setText("");
+						descriptionFieldExercice.setText("");
+						videoFieldExercice.setText("");
+						chargeExerciceList();
+					} catch (Exception e2) {
+						JOptionPane.showMessageDialog(null, "El id tiene que ser de tipo Entero");
+					}
+					
+				}
+			}
+		});
+		createButton_1.setBounds(349, 589, 241, 27);
+		exercicePanel.add(createButton_1);
+
+		modifyButton_1 = new JButton("Modificar");
+		modifyButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (idFieldExercice.getText().equals("") || nameFieldExercice.getText().equals("")
+						|| descriptionFieldExercice.getText().equals("") || videoFieldExercice.getText().equals("")) {
+					JOptionPane.showMessageDialog(null,
+							ResourceBundle.getBundle("i18n").getString("signInInfoMessageDefault"));
+				} else {
+					try {
+						Exercice exercice = new Exercice(Integer.parseInt(idFieldExercice.getText()), nameFieldExercice.getText(), descriptionFieldExercice.getText(), videoFieldExercice.getText());
+						ExerciceDao.update(exercice);
+						JOptionPane.showMessageDialog(null, "Ejercicio modificado con exito");
+						dontShowButton_1.doClick();
+					} catch (Exception e2) {
+						JOptionPane.showMessageDialog(null, "El id tiene que ser de tipo Entero");
+					}
+					
+				}
+			}
+		});
+		modifyButton_1.setEnabled(false);
+		modifyButton_1.setBounds(590, 589, 241, 27);
+		exercicePanel.add(modifyButton_1);
+
+		deleteButton_1 = new JButton("Borrar");
+		deleteButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (idFieldExercice.getText().equals("") || nameFieldExercice.getText().equals("")
+						|| descriptionFieldExercice.getText().equals("") || videoFieldExercice.getText().equals("")) {
+					JOptionPane.showMessageDialog(null,
+							ResourceBundle.getBundle("i18n").getString("signInInfoMessageDefault"));
+				} else {
+					try {
+						Exercice exercice = new Exercice(Integer.parseInt(idFieldExercice.getText()), nameFieldExercice.getText(), descriptionFieldExercice.getText(), videoFieldExercice.getText());
+						ExerciceDao.delete(exercice);
+						JOptionPane.showMessageDialog(null, "Ejercicio borrado con exito");
+						dontShowButton_1.doClick();
+					} catch (Exception e2) {
+						JOptionPane.showMessageDialog(null, "El id tiene que ser de tipo Entero");
+					}
+					
+				}
+			}
+		});
+		deleteButton_1.setEnabled(false);
+		deleteButton_1.setBounds(831, 589, 241, 27);
+		exercicePanel.add(deleteButton_1);
+
+		dontShowButton_1 = new JButton("No Mostrar");
+		dontShowButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				showButton_1.setEnabled(true);
+				dontShowButton_1.setEnabled(false);
+				modifyButton_1.setEnabled(false);
+				deleteButton_1.setEnabled(false);
+				createButton_1.setEnabled(true);
+				idFieldExercice.setText("");
+				nameFieldExercice.setText("");
+				descriptionFieldExercice.setText("");
+				videoFieldExercice.setText("");
+				chargeExerciceList();
+			}
+		});
+		dontShowButton_1.setEnabled(false);
+		dontShowButton_1.setBounds(174, 589, 165, 27);
+		exercicePanel.add(dontShowButton_1);
+
 	}
 
 	public void chargeUser() {
 		layeredPane.removeAll();
 		layeredPane.add(userPanel);
 		lblMenu.setText("Usuarios");
+		chargeUserList();
+	}
+
+	public void chargeMain() {
+		layeredPane.removeAll();
+		layeredPane.add(mainPanel);
+		lblMenu.setText("Menu");
+	}
+
+	public void chargeExercice() {
+		layeredPane.removeAll();
+		layeredPane.add(exercicePanel);
+		lblMenu.setText("Ejercicios");
+		chargeExerciceList();
 	}
 
 	public void chargeUserList() {
@@ -347,5 +536,16 @@ public class MainPanelAdmin extends JPanel {
 			count++;
 		}
 		userList.setListData(userAr);
+	}
+
+	public void chargeExerciceList() {
+		ArrayList<Exercice> array = ExerciceDao.read();
+		Exercice[] exerciceAr = new Exercice[array.size()];
+		int count = 0;
+		for (Exercice exercice : array) {
+			exerciceAr[count] = exercice;
+			count++;
+		}
+		exerciceList.setListData(exerciceAr);
 	}
 }
