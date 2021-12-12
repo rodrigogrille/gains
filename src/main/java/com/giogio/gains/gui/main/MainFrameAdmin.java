@@ -58,9 +58,19 @@ public class MainFrameAdmin extends JFrame {
 		mnNewMenu.add(mntmNewMenuItem);
 		
 		mntmNewMenuItem_1 = new JMenuItem("Roles");
+		mntmNewMenuItem_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				mainPanel.chargeRole();
+			}
+		});
 		mnNewMenu.add(mntmNewMenuItem_1);
 		
 		mntmNewMenuItem_2 = new JMenuItem("Tablas");
+		mntmNewMenuItem_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				mainPanel.chargeTable();
+			}
+		});
 		mnNewMenu.add(mntmNewMenuItem_2);
 		
 		mntmNewMenuItem_3 = new JMenuItem("Ejercicios");
